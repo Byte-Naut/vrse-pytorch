@@ -1,0 +1,2814 @@
+{
+  "matrix": {
+    "reversed_condition": {
+      "4300": {
+        "Frozen": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 18.577001571655273,
+              "nasa_score": 33226.141680890716,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 48.37797927856445,
+              "rmse": 23.61124610900879,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 37.2665901184082,
+              "nasa_score": 1644624.696732971,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 119.77043151855469,
+              "rmse": 56.47547912597656,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 111.31877136230469,
+              "nasa_score": 2441671887.1727104,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 163.5238800048828,
+              "rmse": 115.59001922607422,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Frozen",
+          "observe_seconds": 0.07164360000206216,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4300,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 41.85603332519531
+        },
+        "Online-ungated": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 16.939979553222656,
+              "nasa_score": 33162.29638252223,
+              "prediction_max_diff_vs_frozen": 29.520763397216797,
+              "q95": 46.49394607543945,
+              "rmse": 22.085357666015625,
+              "route_frac": 1.0
+            },
+            "post_new": {
+              "mae": 85.67860412597656,
+              "nasa_score": 74673741.53922158,
+              "prediction_max_diff_vs_frozen": 129.57098388671875,
+              "q95": 125.005126953125,
+              "rmse": 93.4786605834961,
+              "route_frac": 1.0,
+              "routed_subset": {
+                "count": 1120,
+                "frozen_rmse": 56.47547912597656,
+                "rmse": 93.4786605834961
+              }
+            },
+            "post_unknown": {
+              "mae": 106.94886016845703,
+              "nasa_score": 7135635186.383436,
+              "prediction_max_diff_vs_frozen": 35.79811096191406,
+              "q95": 171.6329803466797,
+              "rmse": 112.6952896118164,
+              "route_frac": 1.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Online-ungated",
+          "observe_seconds": 0.07164360000206216,
+          "online_trace": [
+            {
+              "checkpoint": 0,
+              "rmse": 119.41388702392578,
+              "samples": 256,
+              "samples_seen_before": 0
+            },
+            {
+              "checkpoint": 1,
+              "rmse": 14.689190864562988,
+              "samples": 256,
+              "samples_seen_before": 256
+            },
+            {
+              "checkpoint": 2,
+              "rmse": 23.54710578918457,
+              "samples": 256,
+              "samples_seen_before": 512
+            },
+            {
+              "checkpoint": 3,
+              "rmse": 34.651790618896484,
+              "samples": 256,
+              "samples_seen_before": 768
+            },
+            {
+              "checkpoint": 4,
+              "rmse": 17.417593002319336,
+              "samples": 256,
+              "samples_seen_before": 1024
+            },
+            {
+              "checkpoint": 5,
+              "rmse": 18.72018051147461,
+              "samples": 256,
+              "samples_seen_before": 1280
+            },
+            {
+              "checkpoint": 6,
+              "rmse": 12.978504180908203,
+              "samples": 82,
+              "samples_seen_before": 1536
+            }
+          ],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4300,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 41.85603332519531
+        },
+        "Shadow-global": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 18.577001571655273,
+              "nasa_score": 33226.141680890716,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 48.37797927856445,
+              "rmse": 23.61124610900879,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 37.2665901184082,
+              "nasa_score": 1644624.696732971,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 119.77043151855469,
+              "rmse": 56.47547912597656,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 111.31877136230469,
+              "nasa_score": 2441671887.1727104,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 163.5238800048828,
+              "rmse": 115.59001922607422,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Shadow-global",
+          "observe_seconds": 0.07164360000206216,
+          "online_trace": [],
+          "promoted": false,
+          "promotion": null,
+          "seed": 4300,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 41.85603332519531
+        },
+        "Static-reject": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 17.022634506225586,
+              "nasa_score": 33180.31489139823,
+              "prediction_max_diff_vs_frozen": 27.285930633544922,
+              "q95": 46.014434814453125,
+              "rmse": 22.095600128173828,
+              "route_frac": 0.9595635533332825
+            },
+            "post_new": {
+              "mae": 37.2665901184082,
+              "nasa_score": 1644624.696732971,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 119.77043151855469,
+              "rmse": 56.47547912597656,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 111.31877136230469,
+              "nasa_score": 2441671887.1727104,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 163.5238800048828,
+              "rmse": 115.59001922607422,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Static-reject",
+          "observe_seconds": 0.07164360000206216,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4300,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 41.85603332519531
+        },
+        "VRSE-KNN": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 18.577001571655273,
+              "nasa_score": 33226.141680890716,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 48.37797927856445,
+              "rmse": 23.61124610900879,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 37.2665901184082,
+              "nasa_score": 1644624.696732971,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 119.77043151855469,
+              "rmse": 56.47547912597656,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 111.31877136230469,
+              "nasa_score": 2441671887.1727104,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 163.5238800048828,
+              "rmse": 115.59001922607422,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": 0.0,
+          "method": "VRSE-KNN",
+          "observe_seconds": 0.07164360000206216,
+          "online_trace": [],
+          "promoted": false,
+          "promotion": {
+            "cond1_rmse": false,
+            "cond2_q95": false,
+            "cond3_region": true,
+            "cond4_id_invariant": true,
+            "cond_min_shadow_updates": true,
+            "id_max_diff": 0.0,
+            "id_overlap_frac": 0.0,
+            "id_route_change_frac": 0.0,
+            "passed": false,
+            "q95_deploy": 120.159423828125,
+            "q95_shadow": 124.4962158203125,
+            "region_prototypes": 512,
+            "region_radius": 0.07662127166986465,
+            "region_tau": 0.1402125209569931,
+            "rmse_deploy": 57.841129302978516,
+            "rmse_shadow": 91.94007873535156,
+            "support_kind": "knn_feature"
+          },
+          "seed": 4300,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 41.85603332519531
+        }
+      },
+      "4301": {
+        "Frozen": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 18.60858154296875,
+              "nasa_score": 17249.175211350397,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 47.32402420043945,
+              "rmse": 23.57164764404297,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 41.90421676635742,
+              "nasa_score": 1997525.910786207,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 122.24581146240234,
+              "rmse": 61.14451217651367,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 101.15421295166016,
+              "nasa_score": 810207066.3028249,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 152.2657928466797,
+              "rmse": 105.80474853515625,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Frozen",
+          "observe_seconds": 0.0747812999998132,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4301,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 41.62950134277344
+        },
+        "Online-ungated": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 16.972951889038086,
+              "nasa_score": 17567.999328052203,
+              "prediction_max_diff_vs_frozen": 20.95380401611328,
+              "q95": 46.120452880859375,
+              "rmse": 22.00432586669922,
+              "route_frac": 1.0
+            },
+            "post_new": {
+              "mae": 83.42720031738281,
+              "nasa_score": 76183021.79432288,
+              "prediction_max_diff_vs_frozen": 129.88577270507812,
+              "q95": 126.69921112060547,
+              "rmse": 91.72936248779297,
+              "route_frac": 1.0,
+              "routed_subset": {
+                "count": 1120,
+                "frozen_rmse": 61.14451217651367,
+                "rmse": 91.72936248779297
+              }
+            },
+            "post_unknown": {
+              "mae": 105.70501708984375,
+              "nasa_score": 3521995716.3143578,
+              "prediction_max_diff_vs_frozen": 31.09515380859375,
+              "q95": 167.15719604492188,
+              "rmse": 111.32717895507812,
+              "route_frac": 1.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Online-ungated",
+          "observe_seconds": 0.0747812999998132,
+          "online_trace": [
+            {
+              "checkpoint": 0,
+              "rmse": 123.3297348022461,
+              "samples": 256,
+              "samples_seen_before": 0
+            },
+            {
+              "checkpoint": 1,
+              "rmse": 11.37883186340332,
+              "samples": 256,
+              "samples_seen_before": 256
+            },
+            {
+              "checkpoint": 2,
+              "rmse": 23.571605682373047,
+              "samples": 256,
+              "samples_seen_before": 512
+            },
+            {
+              "checkpoint": 3,
+              "rmse": 36.86638259887695,
+              "samples": 256,
+              "samples_seen_before": 768
+            },
+            {
+              "checkpoint": 4,
+              "rmse": 24.823959350585938,
+              "samples": 256,
+              "samples_seen_before": 1024
+            },
+            {
+              "checkpoint": 5,
+              "rmse": 16.34801483154297,
+              "samples": 256,
+              "samples_seen_before": 1280
+            },
+            {
+              "checkpoint": 6,
+              "rmse": 11.108569145202637,
+              "samples": 110,
+              "samples_seen_before": 1536
+            }
+          ],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4301,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 41.62950134277344
+        },
+        "Shadow-global": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 18.60858154296875,
+              "nasa_score": 17249.175211350397,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 47.32402420043945,
+              "rmse": 23.57164764404297,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 41.90421676635742,
+              "nasa_score": 1997525.910786207,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 122.24581146240234,
+              "rmse": 61.14451217651367,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 101.15421295166016,
+              "nasa_score": 810207066.3028249,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 152.2657928466797,
+              "rmse": 105.80474853515625,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Shadow-global",
+          "observe_seconds": 0.0747812999998132,
+          "online_trace": [],
+          "promoted": false,
+          "promotion": null,
+          "seed": 4301,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 41.62950134277344
+        },
+        "Static-reject": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 17.053438186645508,
+              "nasa_score": 17411.94478910428,
+              "prediction_max_diff_vs_frozen": 20.001384735107422,
+              "q95": 46.01346969604492,
+              "rmse": 21.990699768066406,
+              "route_frac": 0.9636942744255066
+            },
+            "post_new": {
+              "mae": 41.90421676635742,
+              "nasa_score": 1997525.910786207,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 122.24581146240234,
+              "rmse": 61.14451217651367,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 101.15421295166016,
+              "nasa_score": 810207066.3028249,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 152.2657928466797,
+              "rmse": 105.80474853515625,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Static-reject",
+          "observe_seconds": 0.0747812999998132,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4301,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 41.62950134277344
+        },
+        "VRSE-KNN": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 18.60858154296875,
+              "nasa_score": 17249.175211350397,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 47.32402420043945,
+              "rmse": 23.57164764404297,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 41.90421676635742,
+              "nasa_score": 1997525.910786207,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 122.24581146240234,
+              "rmse": 61.14451217651367,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 101.15421295166016,
+              "nasa_score": 810207066.3028249,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 152.2657928466797,
+              "rmse": 105.80474853515625,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": 0.0,
+          "method": "VRSE-KNN",
+          "observe_seconds": 0.0747812999998132,
+          "online_trace": [],
+          "promoted": false,
+          "promotion": {
+            "cond1_rmse": false,
+            "cond2_q95": false,
+            "cond3_region": true,
+            "cond4_id_invariant": true,
+            "cond_min_shadow_updates": true,
+            "id_max_diff": 0.0,
+            "id_overlap_frac": 0.0,
+            "id_route_change_frac": 0.0,
+            "passed": false,
+            "q95_deploy": 120.60902404785156,
+            "q95_shadow": 125.88826751708984,
+            "region_prototypes": 512,
+            "region_radius": 0.07649670541286469,
+            "region_tau": 0.11880087852478027,
+            "rmse_deploy": 59.0926399230957,
+            "rmse_shadow": 90.12742614746094,
+            "support_kind": "knn_feature"
+          },
+          "seed": 4301,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 41.62950134277344
+        }
+      },
+      "4302": {
+        "Frozen": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 16.58667755126953,
+              "nasa_score": 24379.315315492735,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 40.97409439086914,
+              "rmse": 20.9426326751709,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 37.91210174560547,
+              "nasa_score": 1030630.3460151964,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 116.50565338134766,
+              "rmse": 55.95334243774414,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 200.9168701171875,
+              "nasa_score": 5605186167077.318,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 240.72015380859375,
+              "rmse": 202.3184814453125,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Frozen",
+          "observe_seconds": 0.13717999999789754,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4302,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 41.64176940917969
+        },
+        "Online-ungated": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 14.808058738708496,
+              "nasa_score": 33231.237260127775,
+              "prediction_max_diff_vs_frozen": 39.30263900756836,
+              "q95": 40.26567077636719,
+              "rmse": 19.63697624206543,
+              "route_frac": 1.0
+            },
+            "post_new": {
+              "mae": 80.10037994384766,
+              "nasa_score": 46201392.340961896,
+              "prediction_max_diff_vs_frozen": 125.39240264892578,
+              "q95": 122.28670501708984,
+              "rmse": 88.53446197509766,
+              "route_frac": 1.0,
+              "routed_subset": {
+                "count": 1092,
+                "frozen_rmse": 55.95334243774414,
+                "rmse": 88.53446197509766
+              }
+            },
+            "post_unknown": {
+              "mae": 211.1624298095703,
+              "nasa_score": 17928957509730.09,
+              "prediction_max_diff_vs_frozen": 25.022064208984375,
+              "q95": 252.0663299560547,
+              "rmse": 212.47645568847656,
+              "route_frac": 1.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Online-ungated",
+          "observe_seconds": 0.13717999999789754,
+          "online_trace": [
+            {
+              "checkpoint": 0,
+              "rmse": 113.52091979980469,
+              "samples": 256,
+              "samples_seen_before": 0
+            },
+            {
+              "checkpoint": 1,
+              "rmse": 15.205680847167969,
+              "samples": 256,
+              "samples_seen_before": 256
+            },
+            {
+              "checkpoint": 2,
+              "rmse": 30.789804458618164,
+              "samples": 256,
+              "samples_seen_before": 512
+            },
+            {
+              "checkpoint": 3,
+              "rmse": 35.66381072998047,
+              "samples": 256,
+              "samples_seen_before": 768
+            },
+            {
+              "checkpoint": 4,
+              "rmse": 20.63730812072754,
+              "samples": 256,
+              "samples_seen_before": 1024
+            },
+            {
+              "checkpoint": 5,
+              "rmse": 15.76268482208252,
+              "samples": 251,
+              "samples_seen_before": 1280
+            }
+          ],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4302,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 41.64176940917969
+        },
+        "Shadow-global": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 16.58667755126953,
+              "nasa_score": 24379.315315492735,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 40.97409439086914,
+              "rmse": 20.9426326751709,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 37.91210174560547,
+              "nasa_score": 1030630.3460151964,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 116.50565338134766,
+              "rmse": 55.95334243774414,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 200.9168701171875,
+              "nasa_score": 5605186167077.318,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 240.72015380859375,
+              "rmse": 202.3184814453125,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Shadow-global",
+          "observe_seconds": 0.13717999999789754,
+          "online_trace": [],
+          "promoted": false,
+          "promotion": null,
+          "seed": 4302,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 41.64176940917969
+        },
+        "Static-reject": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 14.985274314880371,
+              "nasa_score": 33716.480263007026,
+              "prediction_max_diff_vs_frozen": 39.954078674316406,
+              "q95": 40.33432388305664,
+              "rmse": 19.710527420043945,
+              "route_frac": 0.9601246118545532
+            },
+            "post_new": {
+              "mae": 37.91210174560547,
+              "nasa_score": 1030630.3460151964,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 116.50565338134766,
+              "rmse": 55.95334243774414,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 200.9168701171875,
+              "nasa_score": 5605186167077.318,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 240.72015380859375,
+              "rmse": 202.3184814453125,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Static-reject",
+          "observe_seconds": 0.13717999999789754,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4302,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 41.64176940917969
+        },
+        "VRSE-KNN": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 16.58667755126953,
+              "nasa_score": 24379.315315492735,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 40.97409439086914,
+              "rmse": 20.9426326751709,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 37.91210174560547,
+              "nasa_score": 1030630.3460151964,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 116.50565338134766,
+              "rmse": 55.95334243774414,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 200.9168701171875,
+              "nasa_score": 5605186167077.318,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 240.72015380859375,
+              "rmse": 202.3184814453125,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": 0.0,
+          "method": "VRSE-KNN",
+          "observe_seconds": 0.13717999999789754,
+          "online_trace": [],
+          "promoted": false,
+          "promotion": {
+            "cond1_rmse": false,
+            "cond2_q95": false,
+            "cond3_region": true,
+            "cond4_id_invariant": true,
+            "cond_min_shadow_updates": true,
+            "id_max_diff": 0.0,
+            "id_overlap_frac": 0.0,
+            "id_route_change_frac": 0.0,
+            "passed": false,
+            "q95_deploy": 114.50790405273438,
+            "q95_shadow": 122.05789947509766,
+            "region_prototypes": 512,
+            "region_radius": 0.12461794912815094,
+            "region_tau": 0.14269386231899261,
+            "rmse_deploy": 54.420352935791016,
+            "rmse_shadow": 87.98414611816406,
+            "support_kind": "knn_feature"
+          },
+          "seed": 4302,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 41.64176940917969
+        }
+      },
+      "4303": {
+        "Frozen": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 16.701557159423828,
+              "nasa_score": 19789.336812158144,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 39.86220932006836,
+              "rmse": 20.913362503051758,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 39.21962356567383,
+              "nasa_score": 1075515.1828042758,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 113.30357360839844,
+              "rmse": 57.00604248046875,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 149.30734252929688,
+              "nasa_score": 87570240851.3983,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 199.12353515625,
+              "rmse": 152.1916046142578,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Frozen",
+          "observe_seconds": 0.1631632000026002,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4303,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 42.271331787109375
+        },
+        "Online-ungated": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 15.745845794677734,
+              "nasa_score": 21645.0375027423,
+              "prediction_max_diff_vs_frozen": 35.54695129394531,
+              "q95": 39.00701904296875,
+              "rmse": 20.010173797607422,
+              "route_frac": 1.0
+            },
+            "post_new": {
+              "mae": 75.9836654663086,
+              "nasa_score": 41324811.842295274,
+              "prediction_max_diff_vs_frozen": 132.56015014648438,
+              "q95": 122.0687255859375,
+              "rmse": 84.71963500976562,
+              "route_frac": 1.0,
+              "routed_subset": {
+                "count": 1096,
+                "frozen_rmse": 57.00604248046875,
+                "rmse": 84.71963500976562
+              }
+            },
+            "post_unknown": {
+              "mae": 145.8423309326172,
+              "nasa_score": 37397501579.82063,
+              "prediction_max_diff_vs_frozen": 46.66618347167969,
+              "q95": 189.07858276367188,
+              "rmse": 148.22959899902344,
+              "route_frac": 1.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Online-ungated",
+          "observe_seconds": 0.1631632000026002,
+          "online_trace": [
+            {
+              "checkpoint": 0,
+              "rmse": 130.57887268066406,
+              "samples": 256,
+              "samples_seen_before": 0
+            },
+            {
+              "checkpoint": 1,
+              "rmse": 14.16856575012207,
+              "samples": 256,
+              "samples_seen_before": 256
+            },
+            {
+              "checkpoint": 2,
+              "rmse": 26.457914352416992,
+              "samples": 256,
+              "samples_seen_before": 512
+            },
+            {
+              "checkpoint": 3,
+              "rmse": 44.648685455322266,
+              "samples": 256,
+              "samples_seen_before": 768
+            },
+            {
+              "checkpoint": 4,
+              "rmse": 31.8182430267334,
+              "samples": 256,
+              "samples_seen_before": 1024
+            },
+            {
+              "checkpoint": 5,
+              "rmse": 17.936416625976562,
+              "samples": 205,
+              "samples_seen_before": 1280
+            }
+          ],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4303,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 42.271331787109375
+        },
+        "Shadow-global": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 16.701557159423828,
+              "nasa_score": 19789.336812158144,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 39.86220932006836,
+              "rmse": 20.913362503051758,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 39.21962356567383,
+              "nasa_score": 1075515.1828042758,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 113.30357360839844,
+              "rmse": 57.00604248046875,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 149.30734252929688,
+              "nasa_score": 87570240851.3983,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 199.12353515625,
+              "rmse": 152.1916046142578,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Shadow-global",
+          "observe_seconds": 0.1631632000026002,
+          "online_trace": [],
+          "promoted": false,
+          "promotion": null,
+          "seed": 4303,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 42.271331787109375
+        },
+        "Static-reject": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 15.649176597595215,
+              "nasa_score": 22355.69373083451,
+              "prediction_max_diff_vs_frozen": 34.53518295288086,
+              "q95": 39.288726806640625,
+              "rmse": 19.96819305419922,
+              "route_frac": 0.9528796076774597
+            },
+            "post_new": {
+              "mae": 39.21962356567383,
+              "nasa_score": 1075515.1828042758,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 113.30357360839844,
+              "rmse": 57.00604248046875,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 149.30734252929688,
+              "nasa_score": 87570240851.3983,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 199.12353515625,
+              "rmse": 152.1916046142578,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Static-reject",
+          "observe_seconds": 0.1631632000026002,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4303,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 42.271331787109375
+        },
+        "VRSE-KNN": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 16.701557159423828,
+              "nasa_score": 19789.336812158144,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 39.86220932006836,
+              "rmse": 20.913362503051758,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 39.21962356567383,
+              "nasa_score": 1075515.1828042758,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 113.30357360839844,
+              "rmse": 57.00604248046875,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 149.30734252929688,
+              "nasa_score": 87570240851.3983,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 199.12353515625,
+              "rmse": 152.1916046142578,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": 0.0,
+          "method": "VRSE-KNN",
+          "observe_seconds": 0.1631632000026002,
+          "online_trace": [],
+          "promoted": false,
+          "promotion": {
+            "cond1_rmse": false,
+            "cond2_q95": false,
+            "cond3_region": true,
+            "cond4_id_invariant": true,
+            "cond_min_shadow_updates": true,
+            "id_max_diff": 0.0,
+            "id_overlap_frac": 0.0,
+            "id_route_change_frac": 0.0,
+            "passed": false,
+            "q95_deploy": 113.9829330444336,
+            "q95_shadow": 125.44738006591797,
+            "region_prototypes": 512,
+            "region_radius": 0.08615916222333908,
+            "region_tau": 0.07092038542032242,
+            "rmse_deploy": 54.63264083862305,
+            "rmse_shadow": 87.8492202758789,
+            "support_kind": "knn_feature"
+          },
+          "seed": 4303,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 42.271331787109375
+        }
+      },
+      "4304": {
+        "Frozen": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 15.495867729187012,
+              "nasa_score": 22512.368779677574,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 42.10334396362305,
+              "rmse": 20.294368743896484,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 39.23003005981445,
+              "nasa_score": 1100604.0978143455,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 115.01950073242188,
+              "rmse": 57.223697662353516,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 173.57594299316406,
+              "nasa_score": 471718749813.5358,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 215.2963409423828,
+              "rmse": 175.47166442871094,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Frozen",
+          "observe_seconds": 0.13108249999822874,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4304,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 40.89559555053711
+        },
+        "Online-ungated": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 15.103214263916016,
+              "nasa_score": 27616.622701659133,
+              "prediction_max_diff_vs_frozen": 25.884910583496094,
+              "q95": 43.972618103027344,
+              "rmse": 20.448495864868164,
+              "route_frac": 1.0
+            },
+            "post_new": {
+              "mae": 79.81765747070312,
+              "nasa_score": 45442373.318554185,
+              "prediction_max_diff_vs_frozen": 126.39652252197266,
+              "q95": 122.24665069580078,
+              "rmse": 88.03356170654297,
+              "route_frac": 1.0,
+              "routed_subset": {
+                "count": 1085,
+                "frozen_rmse": 57.223697662353516,
+                "rmse": 88.03356170654297
+              }
+            },
+            "post_unknown": {
+              "mae": 176.47535705566406,
+              "nasa_score": 1323222699268.1833,
+              "prediction_max_diff_vs_frozen": 37.47514343261719,
+              "q95": 226.08016967773438,
+              "rmse": 178.82708740234375,
+              "route_frac": 1.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Online-ungated",
+          "observe_seconds": 0.13108249999822874,
+          "online_trace": [
+            {
+              "checkpoint": 0,
+              "rmse": 121.69103240966797,
+              "samples": 256,
+              "samples_seen_before": 0
+            },
+            {
+              "checkpoint": 1,
+              "rmse": 13.948060035705566,
+              "samples": 256,
+              "samples_seen_before": 256
+            },
+            {
+              "checkpoint": 2,
+              "rmse": 29.3883113861084,
+              "samples": 256,
+              "samples_seen_before": 512
+            },
+            {
+              "checkpoint": 3,
+              "rmse": 31.486364364624023,
+              "samples": 256,
+              "samples_seen_before": 768
+            },
+            {
+              "checkpoint": 4,
+              "rmse": 22.716289520263672,
+              "samples": 256,
+              "samples_seen_before": 1024
+            },
+            {
+              "checkpoint": 5,
+              "rmse": 19.182388305664062,
+              "samples": 255,
+              "samples_seen_before": 1280
+            }
+          ],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4304,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 40.89559555053711
+        },
+        "Shadow-global": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 15.495867729187012,
+              "nasa_score": 22512.368779677574,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 42.10334396362305,
+              "rmse": 20.294368743896484,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 39.23003005981445,
+              "nasa_score": 1100604.0978143455,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 115.01950073242188,
+              "rmse": 57.223697662353516,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 173.57594299316406,
+              "nasa_score": 471718749813.5358,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 215.2963409423828,
+              "rmse": 175.47166442871094,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Shadow-global",
+          "observe_seconds": 0.13108249999822874,
+          "online_trace": [],
+          "promoted": false,
+          "promotion": null,
+          "seed": 4304,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 40.89559555053711
+        },
+        "Static-reject": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 15.111466407775879,
+              "nasa_score": 29196.655232456742,
+              "prediction_max_diff_vs_frozen": 24.536468505859375,
+              "q95": 44.17775344848633,
+              "rmse": 20.480714797973633,
+              "route_frac": 0.9741538166999817
+            },
+            "post_new": {
+              "mae": 39.23003005981445,
+              "nasa_score": 1100604.0978143455,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 115.01950073242188,
+              "rmse": 57.223697662353516,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 173.57594299316406,
+              "nasa_score": 471718749813.5358,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 215.2963409423828,
+              "rmse": 175.47166442871094,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Static-reject",
+          "observe_seconds": 0.13108249999822874,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4304,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 40.89559555053711
+        },
+        "VRSE-KNN": {
+          "capability_passed": false,
+          "domains": {
+            "id_guard": {
+              "mae": 15.495867729187012,
+              "nasa_score": 22512.368779677574,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 42.10334396362305,
+              "rmse": 20.294368743896484,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 39.23003005981445,
+              "nasa_score": 1100604.0978143455,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 115.01950073242188,
+              "rmse": 57.223697662353516,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 173.57594299316406,
+              "nasa_score": 471718749813.5358,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 215.2963409423828,
+              "rmse": 175.47166442871094,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": 0.0,
+          "method": "VRSE-KNN",
+          "observe_seconds": 0.13108249999822874,
+          "online_trace": [],
+          "promoted": false,
+          "promotion": {
+            "cond1_rmse": false,
+            "cond2_q95": false,
+            "cond3_region": true,
+            "cond4_id_invariant": true,
+            "cond_min_shadow_updates": true,
+            "id_max_diff": 0.0,
+            "id_overlap_frac": 0.0,
+            "id_route_change_frac": 0.0,
+            "passed": false,
+            "q95_deploy": 116.01138305664062,
+            "q95_shadow": 122.41529083251953,
+            "region_prototypes": 512,
+            "region_radius": 0.09158886224031448,
+            "region_tau": 0.159335196018219,
+            "rmse_deploy": 55.37757110595703,
+            "rmse_shadow": 88.38185119628906,
+            "support_kind": "knn_feature"
+          },
+          "seed": 4304,
+          "stream": "reversed_condition",
+          "trivial_id_rmse": 40.89559555053711
+        }
+      }
+    },
+    "stable_condition": {
+      "4300": {
+        "Frozen": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 18.577001571655273,
+              "nasa_score": 33226.141680890716,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 48.37797927856445,
+              "rmse": 23.61124610900879,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 89.5987319946289,
+              "nasa_score": 8073716.729285628,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 125.2122802734375,
+              "rmse": 98.04710388183594,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 111.31877136230469,
+              "nasa_score": 2441671887.1727104,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 163.5238800048828,
+              "rmse": 115.59001922607422,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Frozen",
+          "observe_seconds": 0.07263899999998102,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4300,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 41.85603332519531
+        },
+        "Online-ungated": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 16.939979553222656,
+              "nasa_score": 33162.29638252223,
+              "prediction_max_diff_vs_frozen": 29.520763397216797,
+              "q95": 46.49394607543945,
+              "rmse": 22.085357666015625,
+              "route_frac": 1.0
+            },
+            "post_new": {
+              "mae": 14.374637603759766,
+              "nasa_score": 13431.561140788217,
+              "prediction_max_diff_vs_frozen": 129.57098388671875,
+              "q95": 42.59437942504883,
+              "rmse": 19.603515625,
+              "route_frac": 1.0,
+              "routed_subset": {
+                "count": 1120,
+                "frozen_rmse": 98.04710388183594,
+                "rmse": 19.603515625
+              }
+            },
+            "post_unknown": {
+              "mae": 106.94886016845703,
+              "nasa_score": 7135635186.383436,
+              "prediction_max_diff_vs_frozen": 35.79811096191406,
+              "q95": 171.6329803466797,
+              "rmse": 112.6952896118164,
+              "route_frac": 1.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Online-ungated",
+          "observe_seconds": 0.07263899999998102,
+          "online_trace": [
+            {
+              "checkpoint": 0,
+              "rmse": 119.41388702392578,
+              "samples": 256,
+              "samples_seen_before": 0
+            },
+            {
+              "checkpoint": 1,
+              "rmse": 14.689190864562988,
+              "samples": 256,
+              "samples_seen_before": 256
+            },
+            {
+              "checkpoint": 2,
+              "rmse": 23.54710578918457,
+              "samples": 256,
+              "samples_seen_before": 512
+            },
+            {
+              "checkpoint": 3,
+              "rmse": 34.651790618896484,
+              "samples": 256,
+              "samples_seen_before": 768
+            },
+            {
+              "checkpoint": 4,
+              "rmse": 17.417593002319336,
+              "samples": 256,
+              "samples_seen_before": 1024
+            },
+            {
+              "checkpoint": 5,
+              "rmse": 18.72018051147461,
+              "samples": 256,
+              "samples_seen_before": 1280
+            },
+            {
+              "checkpoint": 6,
+              "rmse": 12.978504180908203,
+              "samples": 82,
+              "samples_seen_before": 1536
+            }
+          ],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4300,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 41.85603332519531
+        },
+        "Shadow-global": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 16.939979553222656,
+              "nasa_score": 33162.29638252223,
+              "prediction_max_diff_vs_frozen": 29.520763397216797,
+              "q95": 46.49394607543945,
+              "rmse": 22.085357666015625,
+              "route_frac": 1.0
+            },
+            "post_new": {
+              "mae": 14.374637603759766,
+              "nasa_score": 13431.561140788217,
+              "prediction_max_diff_vs_frozen": 129.57098388671875,
+              "q95": 42.59437942504883,
+              "rmse": 19.603515625,
+              "route_frac": 1.0,
+              "routed_subset": {
+                "count": 1120,
+                "frozen_rmse": 98.04710388183594,
+                "rmse": 19.603515625
+              }
+            },
+            "post_unknown": {
+              "mae": 106.94886016845703,
+              "nasa_score": 7135635186.383436,
+              "prediction_max_diff_vs_frozen": 35.79811096191406,
+              "q95": 171.6329803466797,
+              "rmse": 112.6952896118164,
+              "route_frac": 1.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Shadow-global",
+          "observe_seconds": 0.07263899999998102,
+          "online_trace": [],
+          "promoted": true,
+          "promotion": null,
+          "seed": 4300,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 41.85603332519531
+        },
+        "Static-reject": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 17.022634506225586,
+              "nasa_score": 33180.31489139823,
+              "prediction_max_diff_vs_frozen": 27.285930633544922,
+              "q95": 46.014434814453125,
+              "rmse": 22.095600128173828,
+              "route_frac": 0.9595635533332825
+            },
+            "post_new": {
+              "mae": 89.5987319946289,
+              "nasa_score": 8073716.729285628,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 125.2122802734375,
+              "rmse": 98.04710388183594,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 111.31877136230469,
+              "nasa_score": 2441671887.1727104,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 163.5238800048828,
+              "rmse": 115.59001922607422,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Static-reject",
+          "observe_seconds": 0.07263899999998102,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4300,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 41.85603332519531
+        },
+        "VRSE-KNN": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 18.577001571655273,
+              "nasa_score": 33226.141680890716,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 48.37797927856445,
+              "rmse": 23.61124610900879,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 14.958767890930176,
+              "nasa_score": 29092.914717154912,
+              "prediction_max_diff_vs_frozen": 129.57098388671875,
+              "q95": 43.207191467285156,
+              "rmse": 20.405487060546875,
+              "route_frac": 0.9598214030265808,
+              "routed_subset": {
+                "count": 1075,
+                "frozen_rmse": 99.89237213134766,
+                "rmse": 19.916101455688477
+              }
+            },
+            "post_unknown": {
+              "mae": 111.31877136230469,
+              "nasa_score": 2441671887.1727104,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 163.5238800048828,
+              "rmse": 115.59001922607422,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": 0.0,
+          "method": "VRSE-KNN",
+          "observe_seconds": 0.07263899999998102,
+          "online_trace": [],
+          "promoted": true,
+          "promotion": {
+            "cond1_rmse": true,
+            "cond2_q95": true,
+            "cond3_region": true,
+            "cond4_id_invariant": true,
+            "cond_min_shadow_updates": true,
+            "id_max_diff": 0.0,
+            "id_overlap_frac": 0.0,
+            "id_route_change_frac": 0.0,
+            "passed": true,
+            "q95_deploy": 125.21235656738281,
+            "q95_shadow": 42.06587219238281,
+            "region_prototypes": 512,
+            "region_radius": 0.07662127166986465,
+            "region_tau": 0.1402125209569931,
+            "rmse_deploy": 96.34188842773438,
+            "rmse_shadow": 19.974966049194336,
+            "support_kind": "knn_feature"
+          },
+          "seed": 4300,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 41.85603332519531
+        }
+      },
+      "4301": {
+        "Frozen": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 18.60858154296875,
+              "nasa_score": 17249.175211350397,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 47.32402420043945,
+              "rmse": 23.57164764404297,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 87.05204772949219,
+              "nasa_score": 8022371.727757728,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 126.36808013916016,
+              "rmse": 96.29977416992188,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 101.15421295166016,
+              "nasa_score": 810207066.3028249,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 152.2657928466797,
+              "rmse": 105.80474853515625,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Frozen",
+          "observe_seconds": 0.07381729999906383,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4301,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 41.62950134277344
+        },
+        "Online-ungated": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 16.972951889038086,
+              "nasa_score": 17567.999328052203,
+              "prediction_max_diff_vs_frozen": 20.95380401611328,
+              "q95": 46.120452880859375,
+              "rmse": 22.00432586669922,
+              "route_frac": 1.0
+            },
+            "post_new": {
+              "mae": 14.600166320800781,
+              "nasa_score": 14828.07415499863,
+              "prediction_max_diff_vs_frozen": 129.88577270507812,
+              "q95": 42.889827728271484,
+              "rmse": 19.86554527282715,
+              "route_frac": 1.0,
+              "routed_subset": {
+                "count": 1120,
+                "frozen_rmse": 96.29977416992188,
+                "rmse": 19.86554527282715
+              }
+            },
+            "post_unknown": {
+              "mae": 105.70501708984375,
+              "nasa_score": 3521995716.3143578,
+              "prediction_max_diff_vs_frozen": 31.09515380859375,
+              "q95": 167.15719604492188,
+              "rmse": 111.32717895507812,
+              "route_frac": 1.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Online-ungated",
+          "observe_seconds": 0.07381729999906383,
+          "online_trace": [
+            {
+              "checkpoint": 0,
+              "rmse": 123.3297348022461,
+              "samples": 256,
+              "samples_seen_before": 0
+            },
+            {
+              "checkpoint": 1,
+              "rmse": 11.37883186340332,
+              "samples": 256,
+              "samples_seen_before": 256
+            },
+            {
+              "checkpoint": 2,
+              "rmse": 23.571605682373047,
+              "samples": 256,
+              "samples_seen_before": 512
+            },
+            {
+              "checkpoint": 3,
+              "rmse": 36.86638259887695,
+              "samples": 256,
+              "samples_seen_before": 768
+            },
+            {
+              "checkpoint": 4,
+              "rmse": 24.823959350585938,
+              "samples": 256,
+              "samples_seen_before": 1024
+            },
+            {
+              "checkpoint": 5,
+              "rmse": 16.34801483154297,
+              "samples": 256,
+              "samples_seen_before": 1280
+            },
+            {
+              "checkpoint": 6,
+              "rmse": 11.108569145202637,
+              "samples": 110,
+              "samples_seen_before": 1536
+            }
+          ],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4301,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 41.62950134277344
+        },
+        "Shadow-global": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 16.972951889038086,
+              "nasa_score": 17567.999328052203,
+              "prediction_max_diff_vs_frozen": 20.95380401611328,
+              "q95": 46.120452880859375,
+              "rmse": 22.00432586669922,
+              "route_frac": 1.0
+            },
+            "post_new": {
+              "mae": 14.600166320800781,
+              "nasa_score": 14828.07415499863,
+              "prediction_max_diff_vs_frozen": 129.88577270507812,
+              "q95": 42.889827728271484,
+              "rmse": 19.86554527282715,
+              "route_frac": 1.0,
+              "routed_subset": {
+                "count": 1120,
+                "frozen_rmse": 96.29977416992188,
+                "rmse": 19.86554527282715
+              }
+            },
+            "post_unknown": {
+              "mae": 105.70501708984375,
+              "nasa_score": 3521995716.3143578,
+              "prediction_max_diff_vs_frozen": 31.09515380859375,
+              "q95": 167.15719604492188,
+              "rmse": 111.32717895507812,
+              "route_frac": 1.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Shadow-global",
+          "observe_seconds": 0.07381729999906383,
+          "online_trace": [],
+          "promoted": true,
+          "promotion": null,
+          "seed": 4301,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 41.62950134277344
+        },
+        "Static-reject": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 17.053438186645508,
+              "nasa_score": 17411.94478910428,
+              "prediction_max_diff_vs_frozen": 20.001384735107422,
+              "q95": 46.01346969604492,
+              "rmse": 21.990699768066406,
+              "route_frac": 0.9636942744255066
+            },
+            "post_new": {
+              "mae": 87.05204772949219,
+              "nasa_score": 8022371.727757728,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 126.36808013916016,
+              "rmse": 96.29977416992188,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 101.15421295166016,
+              "nasa_score": 810207066.3028249,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 152.2657928466797,
+              "rmse": 105.80474853515625,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Static-reject",
+          "observe_seconds": 0.07381729999906383,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4301,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 41.62950134277344
+        },
+        "VRSE-KNN": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 18.60858154296875,
+              "nasa_score": 17249.175211350397,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 47.32402420043945,
+              "rmse": 23.57164764404297,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 15.887578010559082,
+              "nasa_score": 27980.93369371461,
+              "prediction_max_diff_vs_frozen": 129.88577270507812,
+              "q95": 44.27103042602539,
+              "rmse": 21.593534469604492,
+              "route_frac": 0.9375,
+              "routed_subset": {
+                "count": 1050,
+                "frozen_rmse": 99.04347229003906,
+                "rmse": 20.37366485595703
+              }
+            },
+            "post_unknown": {
+              "mae": 101.15421295166016,
+              "nasa_score": 810207066.3028249,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 152.2657928466797,
+              "rmse": 105.80474853515625,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": 0.0,
+          "method": "VRSE-KNN",
+          "observe_seconds": 0.07381729999906383,
+          "online_trace": [],
+          "promoted": true,
+          "promotion": {
+            "cond1_rmse": true,
+            "cond2_q95": true,
+            "cond3_region": true,
+            "cond4_id_invariant": true,
+            "cond_min_shadow_updates": true,
+            "id_max_diff": 0.0,
+            "id_overlap_frac": 0.0,
+            "id_route_change_frac": 0.0,
+            "passed": true,
+            "q95_deploy": 126.12380981445312,
+            "q95_shadow": 45.74686813354492,
+            "region_prototypes": 512,
+            "region_radius": 0.07649670541286469,
+            "region_tau": 0.11880087852478027,
+            "rmse_deploy": 95.63067626953125,
+            "rmse_shadow": 21.920583724975586,
+            "support_kind": "knn_feature"
+          },
+          "seed": 4301,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 41.62950134277344
+        }
+      },
+      "4302": {
+        "Frozen": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 16.58667755126953,
+              "nasa_score": 24379.315315492735,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 40.97409439086914,
+              "rmse": 20.9426326751709,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 86.5205078125,
+              "nasa_score": 7174092.538930022,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 124.5233154296875,
+              "rmse": 95.94194030761719,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 200.9168701171875,
+              "nasa_score": 5605186167077.318,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 240.72015380859375,
+              "rmse": 202.3184814453125,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Frozen",
+          "observe_seconds": 0.13015969999833032,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4302,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 41.64176940917969
+        },
+        "Online-ungated": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 14.808058738708496,
+              "nasa_score": 33231.237260127775,
+              "prediction_max_diff_vs_frozen": 39.30263900756836,
+              "q95": 40.26567077636719,
+              "rmse": 19.63697624206543,
+              "route_frac": 1.0
+            },
+            "post_new": {
+              "mae": 14.7182035446167,
+              "nasa_score": 9233.509291833241,
+              "prediction_max_diff_vs_frozen": 125.39240264892578,
+              "q95": 37.13969039916992,
+              "rmse": 18.60060691833496,
+              "route_frac": 1.0,
+              "routed_subset": {
+                "count": 1092,
+                "frozen_rmse": 95.94194030761719,
+                "rmse": 18.60060691833496
+              }
+            },
+            "post_unknown": {
+              "mae": 211.1624298095703,
+              "nasa_score": 17928957509730.09,
+              "prediction_max_diff_vs_frozen": 25.022064208984375,
+              "q95": 252.0663299560547,
+              "rmse": 212.47645568847656,
+              "route_frac": 1.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Online-ungated",
+          "observe_seconds": 0.13015969999833032,
+          "online_trace": [
+            {
+              "checkpoint": 0,
+              "rmse": 113.52091979980469,
+              "samples": 256,
+              "samples_seen_before": 0
+            },
+            {
+              "checkpoint": 1,
+              "rmse": 15.205680847167969,
+              "samples": 256,
+              "samples_seen_before": 256
+            },
+            {
+              "checkpoint": 2,
+              "rmse": 30.789804458618164,
+              "samples": 256,
+              "samples_seen_before": 512
+            },
+            {
+              "checkpoint": 3,
+              "rmse": 35.66381072998047,
+              "samples": 256,
+              "samples_seen_before": 768
+            },
+            {
+              "checkpoint": 4,
+              "rmse": 20.63730812072754,
+              "samples": 256,
+              "samples_seen_before": 1024
+            },
+            {
+              "checkpoint": 5,
+              "rmse": 15.76268482208252,
+              "samples": 251,
+              "samples_seen_before": 1280
+            }
+          ],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4302,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 41.64176940917969
+        },
+        "Shadow-global": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 14.808058738708496,
+              "nasa_score": 33231.237260127775,
+              "prediction_max_diff_vs_frozen": 39.30263900756836,
+              "q95": 40.26567077636719,
+              "rmse": 19.63697624206543,
+              "route_frac": 1.0
+            },
+            "post_new": {
+              "mae": 14.7182035446167,
+              "nasa_score": 9233.509291833241,
+              "prediction_max_diff_vs_frozen": 125.39240264892578,
+              "q95": 37.13969039916992,
+              "rmse": 18.60060691833496,
+              "route_frac": 1.0,
+              "routed_subset": {
+                "count": 1092,
+                "frozen_rmse": 95.94194030761719,
+                "rmse": 18.60060691833496
+              }
+            },
+            "post_unknown": {
+              "mae": 211.1624298095703,
+              "nasa_score": 17928957509730.09,
+              "prediction_max_diff_vs_frozen": 25.022064208984375,
+              "q95": 252.0663299560547,
+              "rmse": 212.47645568847656,
+              "route_frac": 1.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Shadow-global",
+          "observe_seconds": 0.13015969999833032,
+          "online_trace": [],
+          "promoted": true,
+          "promotion": null,
+          "seed": 4302,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 41.64176940917969
+        },
+        "Static-reject": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 14.985274314880371,
+              "nasa_score": 33716.480263007026,
+              "prediction_max_diff_vs_frozen": 39.954078674316406,
+              "q95": 40.33432388305664,
+              "rmse": 19.710527420043945,
+              "route_frac": 0.9601246118545532
+            },
+            "post_new": {
+              "mae": 86.5205078125,
+              "nasa_score": 7174092.538930022,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 124.5233154296875,
+              "rmse": 95.94194030761719,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 200.9168701171875,
+              "nasa_score": 5605186167077.318,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 240.72015380859375,
+              "rmse": 202.3184814453125,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Static-reject",
+          "observe_seconds": 0.13015969999833032,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4302,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 41.64176940917969
+        },
+        "VRSE-KNN": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 16.58667755126953,
+              "nasa_score": 24379.315315492735,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 40.97409439086914,
+              "rmse": 20.9426326751709,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 15.7467622756958,
+              "nasa_score": 44937.498715762085,
+              "prediction_max_diff_vs_frozen": 125.39240264892578,
+              "q95": 39.954429626464844,
+              "rmse": 20.876319885253906,
+              "route_frac": 0.930402934551239,
+              "routed_subset": {
+                "count": 1016,
+                "frozen_rmse": 98.91072082519531,
+                "rmse": 18.929973602294922
+              }
+            },
+            "post_unknown": {
+              "mae": 200.9168701171875,
+              "nasa_score": 5605186167077.318,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 240.72015380859375,
+              "rmse": 202.3184814453125,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": 0.0,
+          "method": "VRSE-KNN",
+          "observe_seconds": 0.13015969999833032,
+          "online_trace": [],
+          "promoted": true,
+          "promotion": {
+            "cond1_rmse": true,
+            "cond2_q95": true,
+            "cond3_region": true,
+            "cond4_id_invariant": true,
+            "cond_min_shadow_updates": true,
+            "id_max_diff": 0.0,
+            "id_overlap_frac": 0.0,
+            "id_route_change_frac": 0.0,
+            "passed": true,
+            "q95_deploy": 124.5241928100586,
+            "q95_shadow": 41.28749465942383,
+            "region_prototypes": 512,
+            "region_radius": 0.12461794912815094,
+            "region_tau": 0.14269386231899261,
+            "rmse_deploy": 97.1963119506836,
+            "rmse_shadow": 20.627361297607422,
+            "support_kind": "knn_feature"
+          },
+          "seed": 4302,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 41.64176940917969
+        }
+      },
+      "4303": {
+        "Frozen": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 16.701557159423828,
+              "nasa_score": 19789.336812158144,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 39.86220932006836,
+              "rmse": 20.913362503051758,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 85.89160919189453,
+              "nasa_score": 7138451.479700385,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 125.00337219238281,
+              "rmse": 95.24402618408203,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 149.30734252929688,
+              "nasa_score": 87570240851.3983,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 199.12353515625,
+              "rmse": 152.1916046142578,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Frozen",
+          "observe_seconds": 0.1250945000010688,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4303,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 42.271331787109375
+        },
+        "Online-ungated": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 15.745845794677734,
+              "nasa_score": 21645.0375027423,
+              "prediction_max_diff_vs_frozen": 35.54695129394531,
+              "q95": 39.00701904296875,
+              "rmse": 20.010173797607422,
+              "route_frac": 1.0
+            },
+            "post_new": {
+              "mae": 16.82585906982422,
+              "nasa_score": 11889.739138790572,
+              "prediction_max_diff_vs_frozen": 132.56015014648438,
+              "q95": 39.811561584472656,
+              "rmse": 20.621522903442383,
+              "route_frac": 1.0,
+              "routed_subset": {
+                "count": 1096,
+                "frozen_rmse": 95.24402618408203,
+                "rmse": 20.621522903442383
+              }
+            },
+            "post_unknown": {
+              "mae": 145.8423309326172,
+              "nasa_score": 37397501579.82063,
+              "prediction_max_diff_vs_frozen": 46.66618347167969,
+              "q95": 189.07858276367188,
+              "rmse": 148.22959899902344,
+              "route_frac": 1.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Online-ungated",
+          "observe_seconds": 0.1250945000010688,
+          "online_trace": [
+            {
+              "checkpoint": 0,
+              "rmse": 130.57887268066406,
+              "samples": 256,
+              "samples_seen_before": 0
+            },
+            {
+              "checkpoint": 1,
+              "rmse": 14.16856575012207,
+              "samples": 256,
+              "samples_seen_before": 256
+            },
+            {
+              "checkpoint": 2,
+              "rmse": 26.457914352416992,
+              "samples": 256,
+              "samples_seen_before": 512
+            },
+            {
+              "checkpoint": 3,
+              "rmse": 44.648685455322266,
+              "samples": 256,
+              "samples_seen_before": 768
+            },
+            {
+              "checkpoint": 4,
+              "rmse": 31.8182430267334,
+              "samples": 256,
+              "samples_seen_before": 1024
+            },
+            {
+              "checkpoint": 5,
+              "rmse": 17.936416625976562,
+              "samples": 205,
+              "samples_seen_before": 1280
+            }
+          ],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4303,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 42.271331787109375
+        },
+        "Shadow-global": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 15.745845794677734,
+              "nasa_score": 21645.0375027423,
+              "prediction_max_diff_vs_frozen": 35.54695129394531,
+              "q95": 39.00701904296875,
+              "rmse": 20.010173797607422,
+              "route_frac": 1.0
+            },
+            "post_new": {
+              "mae": 16.82585906982422,
+              "nasa_score": 11889.739138790572,
+              "prediction_max_diff_vs_frozen": 132.56015014648438,
+              "q95": 39.811561584472656,
+              "rmse": 20.621522903442383,
+              "route_frac": 1.0,
+              "routed_subset": {
+                "count": 1096,
+                "frozen_rmse": 95.24402618408203,
+                "rmse": 20.621522903442383
+              }
+            },
+            "post_unknown": {
+              "mae": 145.8423309326172,
+              "nasa_score": 37397501579.82063,
+              "prediction_max_diff_vs_frozen": 46.66618347167969,
+              "q95": 189.07858276367188,
+              "rmse": 148.22959899902344,
+              "route_frac": 1.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Shadow-global",
+          "observe_seconds": 0.1250945000010688,
+          "online_trace": [],
+          "promoted": true,
+          "promotion": null,
+          "seed": 4303,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 42.271331787109375
+        },
+        "Static-reject": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 15.649176597595215,
+              "nasa_score": 22355.69373083451,
+              "prediction_max_diff_vs_frozen": 34.53518295288086,
+              "q95": 39.288726806640625,
+              "rmse": 19.96819305419922,
+              "route_frac": 0.9528796076774597
+            },
+            "post_new": {
+              "mae": 85.89160919189453,
+              "nasa_score": 7138451.479700385,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 125.00337219238281,
+              "rmse": 95.24402618408203,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 149.30734252929688,
+              "nasa_score": 87570240851.3983,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 199.12353515625,
+              "rmse": 152.1916046142578,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Static-reject",
+          "observe_seconds": 0.1250945000010688,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4303,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 42.271331787109375
+        },
+        "VRSE-KNN": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 16.701557159423828,
+              "nasa_score": 19789.336812158144,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 39.86220932006836,
+              "rmse": 20.913362503051758,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 17.549854278564453,
+              "nasa_score": 34636.988091081046,
+              "prediction_max_diff_vs_frozen": 132.56015014648438,
+              "q95": 40.93016815185547,
+              "rmse": 22.129793167114258,
+              "route_frac": 0.9516423344612122,
+              "routed_subset": {
+                "count": 1043,
+                "frozen_rmse": 97.24300384521484,
+                "rmse": 20.93870735168457
+              }
+            },
+            "post_unknown": {
+              "mae": 149.30734252929688,
+              "nasa_score": 87570240851.3983,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 199.12353515625,
+              "rmse": 152.1916046142578,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": 0.0,
+          "method": "VRSE-KNN",
+          "observe_seconds": 0.1250945000010688,
+          "online_trace": [],
+          "promoted": true,
+          "promotion": {
+            "cond1_rmse": true,
+            "cond2_q95": true,
+            "cond3_region": true,
+            "cond4_id_invariant": true,
+            "cond_min_shadow_updates": true,
+            "id_max_diff": 0.0,
+            "id_overlap_frac": 0.0,
+            "id_route_change_frac": 0.0,
+            "passed": true,
+            "q95_deploy": 125.00440979003906,
+            "q95_shadow": 39.302215576171875,
+            "region_prototypes": 512,
+            "region_radius": 0.08615916222333908,
+            "region_tau": 0.07092038542032242,
+            "rmse_deploy": 97.42194366455078,
+            "rmse_shadow": 19.583127975463867,
+            "support_kind": "knn_feature"
+          },
+          "seed": 4303,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 42.271331787109375
+        }
+      },
+      "4304": {
+        "Frozen": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 15.495867729187012,
+              "nasa_score": 22512.368779677574,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 42.10334396362305,
+              "rmse": 20.294368743896484,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 85.76728057861328,
+              "nasa_score": 7158299.313599405,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 124.9991683959961,
+              "rmse": 95.3495864868164,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 173.57594299316406,
+              "nasa_score": 471718749813.5358,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 215.2963409423828,
+              "rmse": 175.47166442871094,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Frozen",
+          "observe_seconds": 0.12178730000050564,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4304,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 40.89559555053711
+        },
+        "Online-ungated": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 15.103214263916016,
+              "nasa_score": 27616.622701659133,
+              "prediction_max_diff_vs_frozen": 25.884910583496094,
+              "q95": 43.972618103027344,
+              "rmse": 20.448495864868164,
+              "route_frac": 1.0
+            },
+            "post_new": {
+              "mae": 16.512447357177734,
+              "nasa_score": 12704.627733626767,
+              "prediction_max_diff_vs_frozen": 126.39652252197266,
+              "q95": 41.83809280395508,
+              "rmse": 21.120820999145508,
+              "route_frac": 1.0,
+              "routed_subset": {
+                "count": 1085,
+                "frozen_rmse": 95.3495864868164,
+                "rmse": 21.120820999145508
+              }
+            },
+            "post_unknown": {
+              "mae": 176.47535705566406,
+              "nasa_score": 1323222699268.1833,
+              "prediction_max_diff_vs_frozen": 37.47514343261719,
+              "q95": 226.08016967773438,
+              "rmse": 178.82708740234375,
+              "route_frac": 1.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Online-ungated",
+          "observe_seconds": 0.12178730000050564,
+          "online_trace": [
+            {
+              "checkpoint": 0,
+              "rmse": 121.69103240966797,
+              "samples": 256,
+              "samples_seen_before": 0
+            },
+            {
+              "checkpoint": 1,
+              "rmse": 13.948060035705566,
+              "samples": 256,
+              "samples_seen_before": 256
+            },
+            {
+              "checkpoint": 2,
+              "rmse": 29.3883113861084,
+              "samples": 256,
+              "samples_seen_before": 512
+            },
+            {
+              "checkpoint": 3,
+              "rmse": 31.486364364624023,
+              "samples": 256,
+              "samples_seen_before": 768
+            },
+            {
+              "checkpoint": 4,
+              "rmse": 22.716289520263672,
+              "samples": 256,
+              "samples_seen_before": 1024
+            },
+            {
+              "checkpoint": 5,
+              "rmse": 19.182388305664062,
+              "samples": 255,
+              "samples_seen_before": 1280
+            }
+          ],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4304,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 40.89559555053711
+        },
+        "Shadow-global": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 15.103214263916016,
+              "nasa_score": 27616.622701659133,
+              "prediction_max_diff_vs_frozen": 25.884910583496094,
+              "q95": 43.972618103027344,
+              "rmse": 20.448495864868164,
+              "route_frac": 1.0
+            },
+            "post_new": {
+              "mae": 16.512447357177734,
+              "nasa_score": 12704.627733626767,
+              "prediction_max_diff_vs_frozen": 126.39652252197266,
+              "q95": 41.83809280395508,
+              "rmse": 21.120820999145508,
+              "route_frac": 1.0,
+              "routed_subset": {
+                "count": 1085,
+                "frozen_rmse": 95.3495864868164,
+                "rmse": 21.120820999145508
+              }
+            },
+            "post_unknown": {
+              "mae": 176.47535705566406,
+              "nasa_score": 1323222699268.1833,
+              "prediction_max_diff_vs_frozen": 37.47514343261719,
+              "q95": 226.08016967773438,
+              "rmse": 178.82708740234375,
+              "route_frac": 1.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Shadow-global",
+          "observe_seconds": 0.12178730000050564,
+          "online_trace": [],
+          "promoted": true,
+          "promotion": null,
+          "seed": 4304,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 40.89559555053711
+        },
+        "Static-reject": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 15.111466407775879,
+              "nasa_score": 29196.655232456742,
+              "prediction_max_diff_vs_frozen": 24.536468505859375,
+              "q95": 44.17775344848633,
+              "rmse": 20.480714797973633,
+              "route_frac": 0.9741538166999817
+            },
+            "post_new": {
+              "mae": 85.76728057861328,
+              "nasa_score": 7158299.313599405,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 124.9991683959961,
+              "rmse": 95.3495864868164,
+              "route_frac": 0.0,
+              "routed_subset": {
+                "count": 0,
+                "frozen_rmse": null,
+                "rmse": null
+              }
+            },
+            "post_unknown": {
+              "mae": 173.57594299316406,
+              "nasa_score": 471718749813.5358,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 215.2963409423828,
+              "rmse": 175.47166442871094,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": null,
+          "method": "Static-reject",
+          "observe_seconds": 0.12178730000050564,
+          "online_trace": [],
+          "promoted": null,
+          "promotion": null,
+          "seed": 4304,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 40.89559555053711
+        },
+        "VRSE-KNN": {
+          "capability_passed": true,
+          "domains": {
+            "id_guard": {
+              "mae": 15.495867729187012,
+              "nasa_score": 22512.368779677574,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 42.10334396362305,
+              "rmse": 20.294368743896484,
+              "route_frac": 0.0
+            },
+            "post_new": {
+              "mae": 17.379676818847656,
+              "nasa_score": 62289.43472438761,
+              "prediction_max_diff_vs_frozen": 126.39652252197266,
+              "q95": 43.25613021850586,
+              "rmse": 23.030099868774414,
+              "route_frac": 0.9373272061347961,
+              "routed_subset": {
+                "count": 1017,
+                "frozen_rmse": 97.97270965576172,
+                "rmse": 21.565383911132812
+              }
+            },
+            "post_unknown": {
+              "mae": 173.57594299316406,
+              "nasa_score": 471718749813.5358,
+              "prediction_max_diff_vs_frozen": 0.0,
+              "q95": 215.2963409423828,
+              "rmse": 175.47166442871094,
+              "route_frac": 0.0
+            }
+          },
+          "initial_rejection": 1.0,
+          "isolation_max_diff": 0.0,
+          "method": "VRSE-KNN",
+          "observe_seconds": 0.12178730000050564,
+          "online_trace": [],
+          "promoted": true,
+          "promotion": {
+            "cond1_rmse": true,
+            "cond2_q95": true,
+            "cond3_region": true,
+            "cond4_id_invariant": true,
+            "cond_min_shadow_updates": true,
+            "id_max_diff": 0.0,
+            "id_overlap_frac": 0.0,
+            "id_route_change_frac": 0.0,
+            "passed": true,
+            "q95_deploy": 125.00003814697266,
+            "q95_shadow": 45.685665130615234,
+            "region_prototypes": 512,
+            "region_radius": 0.09158886224031448,
+            "region_tau": 0.159335196018219,
+            "rmse_deploy": 96.62508392333984,
+            "rmse_shadow": 21.892229080200195,
+            "support_kind": "knn_feature"
+          },
+          "seed": 4304,
+          "stream": "stable_condition",
+          "trivial_id_rmse": 40.89559555053711
+        }
+      }
+    }
+  },
+  "protocol_revision": "phase3b-discovery-global-normalization-v1",
+  "seeds": [
+    4300,
+    4301,
+    4302,
+    4303,
+    4304
+  ],
+  "streams": [
+    "stable_condition",
+    "reversed_condition"
+  ]
+}

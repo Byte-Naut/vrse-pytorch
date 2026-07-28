@@ -1,0 +1,48 @@
+{
+  "bullets": {
+    "H1_isolation_10_of_10": true,
+    "H2_reversed_false_promote_at_most_1_of_5": true,
+    "H2_stable_promote_4_of_5": true,
+    "H3_regional_isolation_4_of_5": true,
+    "H4_stable_utility_4_of_5": true
+  },
+  "per_seed": {
+    "H1": [
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "H3": [
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "H4": [
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "reversed_promotions": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "stable_promotions": [
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "protocol_revision": "phase3b-discovery-global-normalization-v1",
+  "verdict": "PASS"
+}

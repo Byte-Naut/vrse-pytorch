@@ -1,0 +1,5 @@
+[predict, pre-update] max|mu diff| = 0.000e+00, max|u diff| = 0.000e+00
+[update_incremental x128] max|Lambda diff| = 0.000e+00, max|q diff| = 0.000e+00
+[predict, post-update] max|mu diff| = 0.000e+00, max|u diff| = 0.000e+00
+
+GP EQUIVALENCE PASSED

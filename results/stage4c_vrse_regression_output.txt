@@ -1,0 +1,20 @@
+Stable seeds promoted (vrse):   10/10
+Unstable seeds promoted (vrse):  0/5
+Mismatches vs original Stage-4C matrix: 0
+{'stream': 'stable_shift', 'seed': 0, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}
+{'stream': 'stable_shift', 'seed': 1, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}
+{'stream': 'stable_shift', 'seed': 2, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}
+{'stream': 'stable_shift', 'seed': 3, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}
+{'stream': 'stable_shift', 'seed': 4, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}
+{'stream': 'stable_extrapolation', 'seed': 0, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}
+{'stream': 'stable_extrapolation', 'seed': 1, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}
+{'stream': 'stable_extrapolation', 'seed': 2, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}
+{'stream': 'stable_extrapolation', 'seed': 3, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}
+{'stream': 'stable_extrapolation', 'seed': 4, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}
+{'stream': 'unstable_extrapolation', 'seed': 0, 'vrse_passed': False, 'orig_promoted': False, 'expected_stable': False}
+{'stream': 'unstable_extrapolation', 'seed': 1, 'vrse_passed': False, 'orig_promoted': False, 'expected_stable': False}
+{'stream': 'unstable_extrapolation', 'seed': 2, 'vrse_passed': False, 'orig_promoted': False, 'expected_stable': False}
+{'stream': 'unstable_extrapolation', 'seed': 3, 'vrse_passed': False, 'orig_promoted': False, 'expected_stable': False}
+{'stream': 'unstable_extrapolation', 'seed': 4, 'vrse_passed': False, 'orig_promoted': False, 'expected_stable': False}
+
+REGRESSION PASSED

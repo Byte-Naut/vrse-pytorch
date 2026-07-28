@@ -1,0 +1,171 @@
+{
+  "centers_original": [
+    [
+      0.0015732014388518678,
+      0.0004976618705035962,
+      100.0
+    ],
+    [
+      10.00304247787611,
+      0.2504683185840708,
+      100.0
+    ],
+    [
+      20.003104269293924,
+      0.7004995073891624,
+      100.0
+    ],
+    [
+      25.00315704467354,
+      0.6204969072164949,
+      59.99999999999998
+    ],
+    [
+      35.00303019480519,
+      0.8405459415584415,
+      100.0
+    ],
+    [
+      42.003067656090074,
+      0.8405175025588536,
+      100.0
+    ]
+  ],
+  "columns": 26,
+  "discovery_units": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "id_regime": 5,
+  "license_on_source_page": "License not specified",
+  "new_regime": 0,
+  "normalization": {
+    "all_finite": true,
+    "floor_feature_indices": [],
+    "floor_features_with_outside_variation": [],
+    "max_abs_z_all_rows": 2.567038868639311,
+    "mean": [
+      24.323991113956367,
+      0.5809184635083144,
+      94.03841229193341,
+      472.3807426376367,
+      578.9645659411015,
+      1417.7575646606915,
+      1202.1947528809244,
+      7.955318822022809,
+      11.485597951344522,
+      279.5587375160054,
+      2227.546732394375,
+      8519.02060435339,
+      1.0918079385403645,
+      42.911221510883536,
+      263.1766888604352,
+      2334.484665813058,
+      8065.70922663252,
+      9.335839206145948,
+      0.023154929577464914,
+      347.6793854033291,
+      2227.4778489116516,
+      97.75397183098505,
+      20.58775672215109,
+      12.355293137003876
+    ],
+    "passed": true,
+    "source": "unlabeled regime_discovery units 1-20, all regimes",
+    "std": [
+      14.596963059957792,
+      0.3061437499542555,
+      14.245103731516817,
+      26.181669783203468,
+      36.969583154112044,
+      105.09939162396945,
+      117.84253470459952,
+      3.572440535156029,
+      5.366491025135857,
+      144.1573293264485,
+      144.61651400088584,
+      332.93069950205523,
+      0.12577771986858766,
+      3.2113367156854014,
+      135.9129139727162,
+      128.13083477195053,
+      84.66923866553243,
+      0.7429616254132896,
+      0.004647119014603204,
+      27.489113619977225,
+      144.73899360536137,
+      5.366842830849295,
+      9.747954786626867,
+      5.848897824732261
+    ],
+    "std_floor": 1e-06
+  },
+  "official_archive_sha256": null,
+  "protocol_revision": "phase3b-discovery-global-normalization-v1",
+  "raw_redistributed": false,
+  "regime_counts": [
+    8044,
+    8096,
+    8122,
+    8002,
+    8037,
+    13458
+  ],
+  "role_sizes": {
+    "id_calibration": 30,
+    "id_fit": 60,
+    "id_guard": 30,
+    "post_decision": 35,
+    "promotion_validation": 35,
+    "shadow_observe": 50
+  },
+  "rows": 53759,
+  "seeds": [
+    4300,
+    4301,
+    4302,
+    4303,
+    4304
+  ],
+  "source_files_sha256": {
+    "Damage Propagation Modeling.pdf": "e7aaef80c177333f400a4c1099fe76e67d244569b9397c937ec4cd3ed5b44a27",
+    "RUL_FD001.txt": "a19c8ec94931949d0485bdc35118206e9c81c4547b422efb9cf86f4ceddbceca",
+    "RUL_FD002.txt": "c851dd96a6ea6998d3c4a8f834d3c8013aa90e93a6ed950dc826ad0655b2906b",
+    "RUL_FD003.txt": "df1e0566306b174a2de41c67a3e7a51877889598b78643fc3e5685259091b7cb",
+    "RUL_FD004.txt": "196b836b85a95ac7fdbbf29c5fdf1657382eafa445644d114ffaaf50dc2975e1",
+    "readme.txt": "4f5270554b775c67e73aff383c5436fd329d6e4cc3d3a116913276fae511269b",
+    "test_FD001.txt": "3cda7109ce17bafb5443f2ac926cfcf88154b941b8c4cf95eb55d1ddd6f52851",
+    "test_FD002.txt": "de7b5bf7e998a985c378488480528b7c02cff1406a46740def362dda8d9b4e02",
+    "test_FD003.txt": "299babd63c8d987cef079c4a425429f33b3a34797d803bbe2ad48c29dbd0d790",
+    "test_FD004.txt": "1dc675fff0624bac10786927c6715b37d1297657137400d2b1a3138d777a3ba5",
+    "train_FD001.txt": "963b5e22825b34d8b21c69e1aeb4af3e647050eb672ee8834ba4b5d91d2de0f8",
+    "train_FD002.txt": "dac6c4dbc4e7c1bdeb5747da3d313d05c395bb99801b44a002b26a2ba13d788f",
+    "train_FD003.txt": "2abbe9968cc5e8eb091980f51b20f62bb4127336d3482cb52071d53bf23329e2",
+    "train_FD004.txt": "27ef6160b6a1dcb2613a88de9c239f763b223f02cdc41dc5cdedc5dc189b6218"
+  },
+  "source_kind": "extracted_directory",
+  "source_landing_page": "https://data.nasa.gov/dataset/cmapss-jet-engine-simulated-data",
+  "source_origin": "user-attested-original-extraction",
+  "source_path": "data\\CMAPSSData",
+  "source_resource_page": "https://data.nasa.gov/dataset/cmapss-jet-engine-simulated-data/resource/5224bcd1-ad61-490b-93b9-2817288accb8",
+  "units": 260,
+  "unknown_regime": 3
+}

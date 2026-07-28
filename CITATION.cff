@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use VRSE, please cite the software and the frozen Phase-3B snapshot."
+title: "VRSE: Validated Regional Support Expansion"
+type: software
+version: 0.1.0a1
+license: Apache-2.0
+repository-code: "https://github.com/Byte-Naut/vrse-pytorch"
+authors:
+  - family-names: "Project"
+    given-names: "VRSE"
+abstract: >-
+  A PyTorch research implementation that separates isolated online learning,
+  independent candidate validation, regional authorization, and exact fallback
+  to a frozen baseline outside the authorized support.
+keywords:
+  - online learning
+  - continual learning
+  - selective prediction
+  - uncertainty estimation
+  - regional experts
