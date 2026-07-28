@@ -1,5 +1,7 @@
 # VRSE
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21653095.svg)](https://doi.org/10.5281/zenodo.21653095)
+
 ### Let online models learn without letting unverified updates serve
 
 **Validated Regional Support Expansion (VRSE)** is a small PyTorch research library
@@ -210,10 +212,19 @@ questions; the public release keeps the evidence needed to audit the final claim
 
 ## Project status and citation
 
-The core lifecycle and the Phase-3B case study are frozen. The current work is release
-hardening: packaging, documentation and independent reproduction. See
+The core lifecycle and the Phase-3B case study are frozen. Version `0.1.0a1` is the
+first public research software release corresponding to that result. It is a research
+preview: the API is not promised stable, and the package is not production ready.
+The immutable version archive is available from
+[Zenodo](https://doi.org/10.5281/zenodo.21653095). See
 [CHANGELOG.md](CHANGELOG.md), [CITATION.cff](CITATION.cff) and the
 [release checklist](docs/RELEASE_CHECKLIST.md).
+
+Published by **Byte-Naut**, an independent open-source research identity.
+
+> Byte-Naut. (2026). *VRSE-PyTorch v0.1.0a1: Validated Regional Support Expansion
+> for Safe Online Adaptation* [Computer software]. Zenodo.
+> https://doi.org/10.5281/zenodo.21653095
 
 VRSE is released under the [Apache License 2.0](LICENSE). The project name and
 package identify this research implementation; they do not imply a safety

@@ -7,8 +7,9 @@ release surface.
 
 - [x] Select and add Apache-2.0 as the open-source `LICENSE`.
 - [x] Select `vrse-pytorch` (import `vrse`) and reserve the canonical repository URL.
-- [x] Use `VRSE Project` in scholarly/package metadata and the hosting account's
-  no-reply identity for commits.
+- [x] Use `Byte-Naut` as the canonical public creator and the hosting account's
+  no-reply identity for commits. The original `v0.1.0a1` package archives retain
+  their pre-DOI embedded build metadata because the frozen files were not rebuilt.
 
 ## Package
 
@@ -35,16 +36,16 @@ release surface.
 - [x] Separate routing guarantees from statistical and domain-safety claims.
 - [x] Document data provenance and the C-MAPSS redistribution restriction.
 - [x] Add the canonical repository URL.
-- [ ] Add external archival URLs after they exist.
+- [x] Add the version-specific Zenodo DOI after publication.
 
 ## Anonymous release audit
 
 - [x] Remove personal names, emails, absolute paths and machine identifiers from tracked files.
 - [x] Inspect image, archive and model/checkpoint byte content for identifying metadata.
 - [ ] Optionally create a dedicated signing key for later releases under the stable project identity.
-- [ ] Create the annotated `v0.1.0a1` tag and attach the audited artifacts.
-- [ ] Archive the exact release in Software Heritage and a DOI-issuing repository.
-- [ ] Record release artifact SHA-256 values outside the hosting platform.
+- [x] Create the annotated `v0.1.0a1` tag and attach the audited artifacts.
+- [x] Submit the exact release to Software Heritage and publish it in Zenodo.
+- [x] Record release artifact SHA-256 values in the Zenodo archive.
 
 ## Release boundary
 

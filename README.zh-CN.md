@@ -1,5 +1,7 @@
 # VRSE
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21653095.svg)](https://doi.org/10.5281/zenodo.21653095)
+
 ### 让在线模型持续学习，但不让未经验证的更新直接上线
 
 **验证式区域支持扩张（Validated Regional Support Expansion，VRSE）** 是一个
@@ -160,6 +162,15 @@ python -m experiments.phase3_visualize
 
 ## 发布状态
 
-核心生命周期与 Phase‑3B 已冻结，当前工作是打包、文档与独立复现。
+核心生命周期与 Phase‑3B 已冻结。`0.1.0a1` 是与该结果对应的首个公开科研软件版本，
+属于 research preview：不承诺 API 稳定，也不代表生产就绪。该版本的不可变归档见
+[Zenodo](https://doi.org/10.5281/zenodo.21653095)。
+
+发布者为 **Byte-Naut**，一个独立的开源研究身份。
+
+> Byte-Naut. (2026). *VRSE-PyTorch v0.1.0a1: Validated Regional Support Expansion
+> for Safe Online Adaptation* [Computer software]. Zenodo.
+> https://doi.org/10.5281/zenodo.21653095
+
 VRSE 采用 [Apache License 2.0](LICENSE) 开源。项目名和包名仅用于标识这一科研实现，
 不表示获得 NASA 或其他机构的安全认证或背书。

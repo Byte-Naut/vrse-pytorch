@@ -11,7 +11,7 @@ requires-python = ">=3.10"
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE"]
 authors = [
-  { name = "VRSE Project" }
+  { name = "Byte-Naut" }
 ]
 keywords = [
   "online-learning",
@@ -46,6 +46,7 @@ test = [
 Homepage = "https://github.com/Byte-Naut/vrse-pytorch"
 Repository = "https://github.com/Byte-Naut/vrse-pytorch"
 Issues = "https://github.com/Byte-Naut/vrse-pytorch/issues"
+Archive = "https://doi.org/10.5281/zenodo.21653095"
 
 [tool.setuptools.packages.find]
 include = ["vrse*"]
