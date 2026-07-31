@@ -1,8 +1,4 @@
-"""Phase-2B 1-D regression tests for the VRSEModel public contract.
-
-They remain the frozen Stage-4C reference path after Phase 3 adds a separate
-high-dimensional support geometry in tests/test_phase3_highdim.py.
-"""
+"""One-dimensional regression tests for the VRSEModel public contract."""
 import copy
 import torch
 import torch.nn as nn
@@ -22,7 +18,7 @@ class _TinyBaseline(nn.Module):
         return self.linear(x)
 
 
-_ID_CALIB_N = 2000  # protocol-recorded value, src/config.py id_calib_n (Stage-3B amendment)
+_ID_CALIB_N = 2000  # protocol-recorded independent calibration size
 
 
 def _make_model():
@@ -39,7 +35,7 @@ def _make_fitted_model():
     """fit() on the frozen ID domain [-1, 0], disjoint from both the new
     region [2, 3] used by observe()/evaluate() and the ID guard domain
     [-3, -2]. Role 1 (ID train) and role 2 (ID calib) are independent
-    batches, per Phase2B_Plan.md W1."""
+    batches, as required by the public data-role contract."""
     model, baseline = _make_model()
     x_id_train = torch.empty(50, 1).uniform_(-1.0, 0.0)
     y_id_train = _true_fn(x_id_train)
@@ -53,7 +49,7 @@ def _make_promotable_model():
     deploy on a validation set drawn from the same new-region domain, with
     a guard set drawn from a disjoint ID domain so cond4 (zero ID-region
     overlap) holds. Roles 3/4/5 (new-region shadow train, new-region val,
-    ID guard) are independent batches, per Phase2B_Plan.md W1."""
+    ID guard) are independent batches."""
     torch.manual_seed(0)
     model, baseline = _make_fitted_model()
 
@@ -86,6 +82,49 @@ def test_no_candidate_served_before_promotion():
     y_baseline = baseline(x).detach()
     y_model = model(x)
     assert torch.equal(y_model, y_baseline), "Model output differs from baseline before any promotion"
+
+
+def test_review_mask_requires_fit():
+    model, _ = _make_model()
+    with pytest.raises(VRSEStateError, match="fit"):
+        model.review_mask(torch.zeros(1, 1))
+
+
+def test_review_mask_prioritizes_uncovered_new_region():
+    torch.manual_seed(7)
+    model, _ = _make_fitted_model()
+    x_known = torch.linspace(-1.0, 0.0, 101).unsqueeze(1)
+    x_new = torch.linspace(2.0, 3.0, 101).unsqueeze(1)
+    known_fraction = model.review_mask(x_known).float().mean()
+    new_fraction = model.review_mask(x_new).float().mean()
+    assert new_fraction > known_fraction
+
+
+def test_review_mask_excludes_current_coverage_and_restores_revoked_coverage():
+    model, _, x_val, y_val, x_guard = _make_promotable_model()
+    x_probe = torch.linspace(-4.0, 4.0, 81).unsqueeze(1)
+
+    before = model.review_mask(x_probe)
+    with torch.no_grad():
+        z = model._phi_sn(x_probe)
+        _, uncertainty = model._pretrain_deploy_head.predict(z)
+    assert torch.equal(before, uncertainty > model._tau)
+    assert before.dtype == torch.bool
+    assert before.shape == (x_probe.shape[0],)
+
+    proposal = model.evaluate(x_val, y_val, guard_x=x_guard)
+    assert proposal.passed
+    model.promote(proposal)
+    served = model.route_mask(x_probe)
+    assert served.any(), "Promotion did not create coverage for the review-mask test"
+    after = model.review_mask(x_probe)
+    assert torch.equal(after, before & ~served)
+    assert not after[served].any(), \
+        "Inputs already served by the expert were sent back for review"
+
+    model.revoke()
+    assert torch.equal(model.review_mask(x_probe), before), \
+        "Revoked coverage did not return to the review pool"
 
 
 def test_output_outside_authorized_region_equals_baseline():
@@ -199,7 +238,7 @@ def test_revoke_restores_full_prior_snapshot():
     """When a second promotion replaces an already-AUTHORIZED deployment,
     revoke() must restore the exact prior snapshot (deploy_head AND
     authorized_region) and land back in AUTHORIZED -- not QUARANTINE,
-    since a real prior deployment existed (Phase2B_Plan.md W5)."""
+    since a real prior deployment existed."""
     torch.manual_seed(0)
     model, baseline = _make_fitted_model()
     for _ in range(40):
@@ -243,7 +282,7 @@ def test_revoke_restores_full_prior_snapshot():
 def test_revoked_can_resume_and_repromote():
     """Whichever state revoke() lands in (QUARANTINE or AUTHORIZED), the
     model must remain usable: observe()/evaluate()/promote() keep working
-    afterward (Phase2B_Plan.md W5 -- REVOKED is audit-only, never a resting
+    afterward. REVOKED is audit-only, never a resting
     state that blocks further lifecycle)."""
     model, baseline, x_val, y_val, x_guard = _make_promotable_model()
     proposal = model.evaluate(x_val, y_val, guard_x=x_guard)
@@ -267,7 +306,7 @@ def test_revoked_can_resume_and_repromote():
 def test_failed_reeval_preserves_authorization():
     """A second evaluate()/promote() cycle that fails validation must
     leave an already-AUTHORIZED deployment serving exactly as before --
-    not reverted to QUARANTINE (Phase2B_Plan.md W5)."""
+    not reverted to QUARANTINE."""
     model, baseline, x_val, y_val, x_guard = _make_promotable_model()
     proposal1 = model.evaluate(x_val, y_val, guard_x=x_guard)
     assert proposal1.passed, f"First proposal did not pass: {proposal1.validation_result}"
@@ -295,8 +334,7 @@ def test_failed_reeval_preserves_authorization():
 
 def test_revoke_depth_is_one():
     """revoke() has exactly one restore point; a second consecutive
-    revoke() must raise rather than keep rolling back further (Stage-4C
-    never validated multi-level rollback)."""
+    revoke() must raise rather than keep rolling back further."""
     model, baseline, x_val, y_val, x_guard = _make_promotable_model()
 
     proposal = model.evaluate(x_val, y_val, guard_x=x_guard)
@@ -438,7 +476,7 @@ def test_revoke_first_promotion_falls_back_to_quarantine():
 
 
 # ---------------------------------------------------------------------------
-# Phase 2B-2 spine tests
+# Region-construction contract tests
 # ---------------------------------------------------------------------------
 
 def _make_tiny_gp(x: torch.Tensor) -> tuple:
@@ -460,7 +498,7 @@ def _make_tiny_gp(x: torch.Tensor) -> tuple:
 def test_region_rejects_protected_overlap():
     """build_observed_span_region must return None when the observed span
     overlaps a protected ID range (closed-interval: touching the boundary
-    counts as overlap, per Stage-4C src/stage4c.py _intervals_overlap)."""
+    counts as overlap)."""
     # Observed span [2.0, 3.0]; protected range [2.5, 4.0] -- overlaps.
     x_train = torch.linspace(2.0, 3.0, 30).unsqueeze(-1)
     x_val = torch.linspace(2.1, 2.9, 10).unsqueeze(-1)
@@ -502,8 +540,7 @@ def test_region_rejects_protected_overlap():
 
 def test_region_rejects_scan_boundary_touch():
     """build_observed_span_region must return None when the observed span
-    reaches or exceeds the scan_domain boundary (Stage-4C check
-    observed_span_touches_scan_boundary)."""
+    reaches or exceeds the scan_domain boundary."""
     # Observed span [2.0, 6.5]; scan_domain=(-8.0, 7.0) -> hi < 7.0 required.
     x_train = torch.linspace(2.0, 6.5, 50).unsqueeze(-1)
     x_val = torch.linspace(2.1, 6.4, 10).unsqueeze(-1)

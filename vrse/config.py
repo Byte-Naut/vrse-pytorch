@@ -2,10 +2,7 @@ from dataclasses import dataclass, field
 
 
 _PRESETS = {
-    # Values match the validated Stage-4C protocol (src/config.py:
-    # SNGPConfig, Stage4BConfig/Stage4CConfig) so this preset actually
-    # encodes the ported, regression-tested algorithm rather than a
-    # differently-tuned lookalike.
+    # Frozen one-dimensional reference defaults.
     "regional_regression": {
         "rff_dim": 128,
         "n_blocks": 2,
@@ -19,9 +16,8 @@ _PRESETS = {
         "promotion_q95_ratio": 1.0,
         "min_shadow_updates": 30,
     },
-    # Phase-3 C-MAPSS preset.  It deliberately keeps the validated GP and
-    # promotion ratios while changing only the input-layer constraint and
-    # the internal support geometry required by N-D inputs.
+    # C-MAPSS high-dimensional preset. It keeps the reference GP and
+    # promotion ratios while selecting the N-D support geometry.
     "regional_regression_highdim": {
         "rff_dim": 128,
         "n_blocks": 2,

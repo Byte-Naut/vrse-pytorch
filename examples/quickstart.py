@@ -27,18 +27,27 @@ def rmse(prediction: torch.Tensor, truth: torch.Tensor) -> float:
     return float(torch.sqrt(torch.mean((prediction - truth) ** 2)).item())
 
 
-def main() -> None:
-    torch.manual_seed(7)
-    baseline = FrozenRule()
-    model = VRSEModel.wrap(
+def harmful_update(x: torch.Tensor) -> torch.Tensor:
+    """A deliberately wrong regional update used to exercise rejection."""
+    return 0.5 * x - 2.5
+
+
+def make_model(baseline: nn.Module, seed: int) -> VRSEModel:
+    return VRSEModel.wrap(
         baseline=baseline,
         config=VRSEConfig(
             preset="regional_regression",
             phi_epochs=120,
             min_shadow_updates=64,
-            random_seed=7,
+            random_seed=seed,
         ),
     )
+
+
+def main() -> None:
+    torch.manual_seed(7)
+    baseline = FrozenRule()
+    model = make_model(baseline, seed=7)
 
     # Four disjoint roles: known fit, known calibration, shadow observation,
     # and held-out promotion validation/guard.
@@ -72,16 +81,38 @@ def main() -> None:
         (model(x_adjacent_unknown) - baseline(x_adjacent_unknown)).abs().max().item()
     )
     route_fraction = float(model.route_mask(x_new_test).float().mean().item())
+    before_rmse = rmse(before_observe, target(x_new_test))
+    after_rmse = rmse(model(x_new_test), target(x_new_test))
 
-    print("VRSE quickstart")
-    print(f"  isolated learning max output change : {isolation_diff:.3e}")
-    print(f"  promotion passed                    : {promoted}")
-    print(f"  new-region route fraction           : {route_fraction:.3f}")
-    print(f"  new-region RMSE before -> after      : "
-          f"{rmse(before_observe, target(x_new_test)):.3f} -> "
-          f"{rmse(model(x_new_test), target(x_new_test)):.3f}")
-    print(f"  old-region max fallback difference  : {old_diff:.3e}")
-    print(f"  unknown max fallback difference     : {unknown_diff:.3e}")
+    # A separately trained, deliberately wrong candidate must fail the same
+    # held-out exam. This keeps the rejection demonstration deterministic.
+    harmful_baseline = FrozenRule()
+    harmful_model = make_model(harmful_baseline, seed=11)
+    harmful_model.fit(x_id, target(x_id), x_calib)
+    harmful_model.observe(x_new_observe, harmful_update(x_new_observe))
+    harmful_proposal = harmful_model.evaluate(
+        x_validation,
+        target(x_validation),
+        guard_x=x_id_guard,
+    )
+    harmful_promoted = harmful_model.promote(harmful_proposal)
+
+    # The first promotion has one restore point: the frozen baseline service.
+    model.revoke()
+    rollback_diff = float((model(x_new_test) - baseline(x_new_test)).abs().max().item())
+
+    yes_no = lambda condition: "yes" if condition else "no"
+    print("VRSE lifecycle check")
+    print(f"  Candidate learned in isolation       {yes_no(after_rmse < before_rmse)}")
+    print(f"  Served model changed before review   {yes_no(isolation_diff > 0.0)}")
+    print(f"  Useful candidate promoted            {yes_no(promoted)}")
+    print(f"  Supported-region RMSE improved       {yes_no(after_rmse < before_rmse)} "
+          f"({before_rmse:.3f} -> {after_rmse:.3f})")
+    print(f"  Harmful candidate promoted           {yes_no(harmful_promoted)}")
+    print(f"  Old behavior changed                 {yes_no(old_diff > 0.0)}")
+    print(f"  Unknown inputs changed               {yes_no(unknown_diff > 0.0)}")
+    print(f"  Revoke restored previous snapshot    {yes_no(rollback_diff == 0.0)}")
+    print(f"  Supported inputs routed to candidate {route_fraction:.1%}")
 
 
 if __name__ == "__main__":

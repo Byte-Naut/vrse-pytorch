@@ -163,8 +163,7 @@ class VRSEModel(nn.Module):
         must come from the frozen ID domain -- never from the new region
         that observe() will later train the shadow on.
 
-        `x_id_calib` must be an independent batch from `x_id` (Stage-3B
-        protocol; see src/calibration.py). Too few points raises ValueError
+        `x_id_calib` must be an independent batch from `x_id`. Too few points raises ValueError
         rather than silently returning a degenerate threshold.
         """
         if self._initialized:
@@ -322,6 +321,28 @@ class VRSEModel(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self._route(x)
+
+    @torch.no_grad()
+    def review_mask(self, x: torch.Tensor) -> torch.Tensor:
+        """Flag inputs unfamiliar to the baseline and not currently served.
+
+        Baseline familiarity uses the frozen fit-time feature map, residual
+        head, and calibration threshold. Current coverage uses route_mask(), so
+        promotion removes served inputs from review and revoke restores them.
+        A True value means "send for review", not universal OOD proof.
+        """
+        if not self._initialized:
+            raise VRSEStateError("Call fit() before review_mask().")
+        if x.ndim != 2:
+            raise ValueError(f"x must have shape (n, d), got {tuple(x.shape)}")
+        if x.shape[0] == 0:
+            raise ValueError("x must not be empty.")
+        if not torch.isfinite(x).all():
+            raise ValueError("x contains non-finite values.")
+        z = self._phi_sn(x)
+        _, uncertainty = self._pretrain_deploy_head.predict(z)
+        baseline_unfamiliar = uncertainty.to(x.device) > self._tau
+        return baseline_unfamiliar & ~self.route_mask(x)
 
     @torch.no_grad()
     def route_mask(self, x: torch.Tensor) -> torch.Tensor:

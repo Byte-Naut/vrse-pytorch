@@ -1,15 +1,14 @@
 cff-version: 1.2.0
-message: "If you use VRSE, please cite the software and the frozen Phase-3B snapshot."
-title: "VRSE-PyTorch v0.1.0a1: Validated Regional Support Expansion for Safe Online Adaptation"
+message: "If you use VRSE, please cite the software and the frozen C-MAPSS FD002 snapshot."
+title: "VRSE: Validated Regional Support Expansion"
 type: software
-version: 0.1.0a1
-date-released: 2026-07-28
-doi: 10.5281/zenodo.21653095
+version: 0.1.0a2
+date-released: 2026-08-01
 license: Apache-2.0
 repository-code: "https://github.com/Byte-Naut/vrse-pytorch"
-url: "https://doi.org/10.5281/zenodo.21653095"
 authors:
-  - name: "Byte-Naut"
+  - family-names: "Project"
+    given-names: "VRSE"
 abstract: >-
   A PyTorch research implementation that separates isolated online learning,
   independent candidate validation, regional authorization, and exact fallback

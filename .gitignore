@@ -1,25 +1,45 @@
+# Python
 __pycache__/
 *.py[cod]
-*.so
 .pytest_cache/
-.mypy_cache/
-.ruff_cache/
 .coverage
 htmlcov/
 
+# Environments and package/build outputs
 .venv/
 venv/
 build/
-dist/*
-!dist/SHA256SUMS
-!dist/VALIDATION.txt
+dist/
 *.egg-info/
 
-data/
-results/phase3_prepared_fd002.npz
+# Local release construction and validation copies
+release/
+release_archives/
+release_validation/
 
+# Downloaded or regenerated research data
+data/
+reproductions/
+*.pkl
+*.pt
+*.npz
+
+# Generated figures are ignored except intentional public evidence/assets
+*.png
+!docs/assets/*.png
+!results/cmapss_fd002_embedding.png
+!results/cmapss_fd002_stream_behavior.png
+!results/cmapss_fd002_safety_plasticity.png
+
+# Logs and editor/OS files
 *.log
 .vscode/
 .idea/
+*.swp
+*.swo
 .DS_Store
 Thumbs.db
+
+# Internal preparation / validation (not release artifacts)
+docs/HN_LAUNCH.md
+docs/RELEASE_VALIDATION.md

@@ -1,231 +1,222 @@
 # VRSE
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21653095.svg)](https://doi.org/10.5281/zenodo.21653095)
+### Let PyTorch models continually learn without breaking what already works.
 
-### Let online models learn without letting unverified updates serve
+Validated Regional Support Expansion (VRSE) is a continual-learning core
+research prototype that keeps the existing model as the default service,
+trains new behavior in isolation, and enables it only after it passes held-out
+evaluation — and only for inputs supported by the available evidence.
 
-**Validated Regional Support Expansion (VRSE)** is a small PyTorch research library
-for a conservative form of online adaptation. New data trains an isolated shadow
-expert. That expert must pass an independent exam before it can serve, and a passing
-expert receives permission only inside the region supported by its evidence.
-Everywhere else, requests continue to use the frozen baseline exactly.
+> **Status: research alpha / reference implementation.** The current release
+> validates the lifecycle and routing mechanism for supervised scalar regression
+> and one 24-dimensional case study.
 
-[中文说明](README.zh-CN.md) · [Quickstart](#quickstart) ·
-[C-MAPSS result](#a-real-24-dimensional-case-study) ·
-[Reproduce](#reproducing-the-frozen-result) · [Research scope](docs/RESEARCH_SCOPE.md)
+[Run the quickstart](#quickstart) ·
+[Experience the lifecycle](#experience-the-full-lifecycle) ·
+[See the evidence](#experimental-evidence) · [Read the theory](docs/THEORY.md) ·
+[中文说明](README.zh-CN.md)
 
-![VRSE lifecycle](docs/assets/vrse-lifecycle.svg)
+## Core idea: update in new regions, fall back in known regions — autonomously
 
-## Why this exists
+![VRSE notebook result: the promoted expert changes only the authorized region](docs/assets/vrse-regional-adaptation-demo.png)
 
-An online learner usually performs two jobs at once: it learns from recent data and
-immediately changes the model that users see. That is convenient when the stream is
-stable, but a bad update, a temporary regime or an unsupported input can alter the
-service globally.
-
-VRSE makes **learning** and **permission to serve** separate events:
-
-1. The existing baseline is copied, frozen and kept as the default service.
-2. New labelled samples update only a shadow residual expert.
-3. Held-out new samples test whether the candidate is useful; an old-domain guard
-   checks that its proposed region does not invade protected behavior.
-4. A passing candidate becomes an immutable deployment snapshot with a bounded
-   authorization region.
-5. Inputs outside that region still receive the exact frozen baseline output.
-
-The central idea is simple: an update may learn globally in the background, but it
-earns only the deployment permission that the available evidence can justify.
+*Notebook demo: on an illustrative 1D fitting task with continuously arriving
+data, VRSE improves the new condition while the protected old condition and
+adjacent unknown inputs remain on the baseline.*
 
 ## Quickstart
-
-VRSE is currently a source-distributed research alpha. From a clone:
 
 ```bash
 python -m pip install -e .
 python -m examples.quickstart
 ```
 
-The public lifecycle is deliberately small:
+Drop into a continual learning loop:
 
 ```python
 from vrse import VRSEConfig, VRSEModel
 
-model = VRSEModel.wrap(
-    baseline=baseline,
-    config=VRSEConfig(preset="regional_regression_highdim"),
-)
+# 1. Deploy — freeze the known service
+model = VRSEModel.wrap(baseline, VRSEConfig(preset="regional_regression_highdim"))
+model.fit(x_id, y_id, x_id_calibration)  # in-domain data (known, trusted data)
 
-model.fit(x_id, y_id, x_id_calibration)       # freeze the known service
-model.observe(x_new, y_new)                   # update only the shadow candidate
-proposal = model.evaluate(x_validation, y_validation, guard_x=x_id_guard)
-promoted = model.promote(proposal)            # atomic, single-use decision
-y_hat = model(x)                              # regional expert or exact fallback
+# 2. Serve — route automatically; buffer what looks unfamiliar
+for x_live in stream:
+    y_hat = model(x_live)                     # expert where authorized, baseline elsewhere
+    unfamiliar = model.review_mask(x_live)     # outside current support → hold for review
+    buffer.store(x_live[unfamiliar])
+
+# 3. Review — when labels arrive (hours or days later)
+buffer.attach_labels(sample_ids, y_delayed)
+if buffer.ready():
+    learn, exam = buffer.take_labeled_disjoint()
+    model.observe(learn.x, learn.y)           # train candidate in isolation
+    proposal = model.evaluate(                # exam on new data + guard on old data
+        exam.x, exam.y, guard_x=x_id_guard,
+    )
+    model.promote(proposal)                   # pass → authorize; fail → discard
 ```
 
-The four data roles are intentionally different. `fit` establishes the old service;
-`observe` trains the candidate; `evaluate` uses held-out evidence; and `guard_x`
-protects old behavior. Reusing the same samples across these roles weakens the meaning
-of promotion.
+Observations and labels are independent events joined by sample ID. The outer
+system manages the buffer and schedule; VRSE handles learning, review,
+promotion, and routing.
 
-See [examples/quickstart.py](examples/quickstart.py) for a deterministic synthetic
-walkthrough and [examples/real_stream_cmapss.py](examples/real_stream_cmapss.py) for
-the frozen real-task lifecycle.
-
-Expected output from the deterministic walkthrough:
+The deterministic example reports the events that matter:
 
 ```text
-VRSE quickstart
-  isolated learning max output change : 0.000e+00
-  promotion passed                    : True
-  new-region route fraction           : 1.000
-  new-region RMSE before -> after      : 2.500 -> 0.003
-  old-region max fallback difference  : 0.000e+00
-  unknown max fallback difference     : 0.000e+00
+VRSE lifecycle check
+  Candidate learned in isolation       yes
+  Served model changed before review   no
+  Useful candidate promoted            yes
+  Supported-region RMSE improved       yes (2.500 → 0.003)
+  Harmful candidate promoted           no
+  Old behavior changed                 no
+  Unknown inputs changed               no
+  Revoke restored previous snapshot    yes
+  Supported inputs routed to candidate 100.0%
 ```
 
-## What is guaranteed by the implementation
+See [`examples/continual_stream.py`](examples/continual_stream.py) for batched
+stream arrival, [`examples/custom_model.py`](examples/custom_model.py) for
+wrapping a user model, and [`examples/cmapss_fd002.py`](examples/cmapss_fd002.py)
+for the case-study lifecycle.
 
-When the documented lifecycle is followed:
+## Experience the full lifecycle
 
-- `observe()` cannot change the currently served snapshot.
-- A proposal binds the baseline, configuration, candidate and authorized region that
-  were evaluated; stale or reused proposals are rejected.
-- Promotion is atomic: the tested GP posterior and region are frozen together.
-- Outside an authorized region, `model(x)` returns the frozen baseline value exactly,
-  rather than approximately preserving it on average.
-- One-step rollback restores the previous deployment snapshot.
+![VRSE lifecycle: baseline serving, isolated learning, held-out review, regional permission and exact fallback](docs/assets/vrse-lifecycle.svg)
 
-These are software and routing properties. They are not a statistical certificate
-that the baseline is safe, that every unknown input is detected, or that an authorized
-expert generalizes beyond its demonstrated support.
+1. The baseline keeps serving while labelled data from a new condition arrives.
+2. A shadow candidate learns in isolation; live outputs do not change.
+3. Held-out data tests utility; a guard set tests overlap with protected
+   conditions.
+4. A useful candidate is frozen and authorized only in its supported region.
+5. Old and adjacent unknown inputs continue to use the exact baseline.
+6. A harmful candidate is rejected; `revoke()` restores the previous snapshot.
 
-## A real 24-dimensional case study
+> Learning can happen continuously; serving new behavior remains an explicit,
+> evidence-gated decision.
 
-The first representative experiment uses **NASA C-MAPSS FD002**, an industrial
-simulation benchmark for turbofan remaining-useful-life prediction. Each observation
-contains three operating settings and 21 sensor values. The benchmark is simulated,
-not field data from operating aircraft.
+For the executable walkthrough behind the opening result, open
+[`notebooks/vrse_lifecycle.ipynb`](notebooks/vrse_lifecycle.ipynb).
 
-The frozen study assigned entire engines to disjoint roles, used five seeds and paired
-two streams:
+## VRSE Theory and Mechanism
 
-- **Stable condition:** the new operating regime remains learnable after observation.
-- **Reversed condition:** the inputs are identical, but validation labels are inverted
-  to create a candidate that should not be promoted.
+**The Industrial Problem.** In safety-critical or stable production systems, updating a global model $f_0(x)$ couples two decisions: learning from a new stream, and immediately changing the behavior for all future inputs. VRSE formally separates *learning* from the *permission to serve*.
 
-The protocol, implementation and result artifacts are frozen under
-`phase3b-discovery-global-normalization-v1`.
+**Formalizing the Service.** Let $f_0: \mathcal{X} \rightarrow \mathbb{R}$ be the immutable baseline. Labelled review data flows into a shadow residual candidate $e^\star(x)$ that is strictly quarantined. After held-out evaluation, a successful candidate is promoted into a deployment snapshot $t$, consisting of a frozen expert $e_t$ and an explicit authorized region $A_t \subseteq \mathcal{X}$.
 
-| Result across five seeds | Frozen baseline | VRSE |
-|---|---:|---:|
-| Stable new-regime RMSE, mean | 96.18 | **21.61** |
-| Stable new-regime RMSE reduction | — | **77.5%** |
-| Stable candidates promoted | — | **5/5** |
-| Reversed candidates falsely promoted | — | **0/5** |
-| New-regime expert routing | — | **93.0–96.0%** |
-| ID / adjacent-unknown expert routing | — | **0.0% / 0.0%** |
+The served function is mathematically guaranteed to be:
 
-The stable result is not produced by rejecting everything: most supported new-regime
-samples use the promoted expert, reducing error by roughly 4.5×. At the same time,
-the protected ID and adjacent unknown regime remain on the exact baseline.
+$$
+F_t(x) =
+\begin{cases}
+f_0(x) + e_t(x), & x \in A_t, \\[4pt]
+f_0(x), & x \notin A_t.
+\end{cases}
+$$
 
-![Stable adaptation and reversed control](results/phase3_stream_behavior.png)
+**The Asynchronous Lifecycle.**
 
-The left panel shows that VRSE recovers most of the utility of globally serving the
-shadow expert. The right panel shows why isolation matters: under concept reversal,
-the ungated online learner serves a harmful update, while VRSE rejects the candidate
-and returns to the baseline. The reversed-label exam changes both the candidate error
-and the baseline denominator, so it should be read as a controlled rejection test—not
-as evidence that candidate degradation alone caused rejection.
+1. **Data Collection (Review Mask):** The baseline maintains an uncertainty score $u_0(x)$ calibrated to a threshold $\tau_0$. The live system holds inputs for delayed labelling only when they fall outside both the baseline's familiar range and the current route coverage:
 
-<p align="center">
-  <img src="results/phase3_embedding.png" width="49%" alt="Frozen feature-space projection and regional authorization mask">
-  <img src="results/phase3_safety_plasticity.png" width="49%" alt="Utility versus interference for the five compared methods">
-</p>
+$$
+R_t(x) = \mathbf{1}[u_0(x) > \tau_0]\,\mathbf{1}[x \notin A_t]
+$$
 
-In the frozen feature projection, the promoted region covers the demonstrated new
-condition while leaving the ID and adjacent unknown clusters on fallback. The
-safety–plasticity plot shows the trade-off directly: global adaptation is useful but
-interferes everywhere; static rejection avoids interference but never adapts; VRSE
-occupies the useful, low-interference corner in this experiment.
+2. **Promotion Pipeline:** Once labels arrive, the outer MLOps system drives the state machine:
 
-Full evidence: [frozen snapshot](results/PHASE3B_SNAPSHOT.md),
-[mechanical verdict](results/PHASE3_RESULT.md),
-[per-seed metrics](results/phase3_metrics_table.md), and
-[protocol](docs/Phase3_Plan.md).
+$$
+D_{\mathrm{obs}} \xrightarrow{\mathrm{observe}} e^\star \xrightarrow[D_{\mathrm{val}}, D_{\mathrm{guard}}]{\mathrm{evaluate}} P^\star \xrightarrow{\mathrm{promote}\;\text{if}\;P^\star.\mathrm{passed}} (e_t, A_t)
+$$
 
-## Reproducing the frozen result
+`observe()` mutates only the shadow without touching the live service. `evaluate()` tests the candidate's utility on held-out new data ($D_{\mathrm{val}}$) and checks whether the proposed region routes the supplied guard inputs ($D_{\mathrm{guard}}$) to the expert or changes their outputs. `promote()` atomically installs a passing snapshot.
 
-C-MAPSS is not redistributed by this repository. Obtain it from the
-[NASA dataset page](https://data.nasa.gov/dataset/cmapss-jet-engine-simulated-data),
-extract it to `data/CMAPSSData/`, then run:
+**Five System Invariants.** The implementation structurally enforces: (i) **shadow non-interference** (learning never alters served outputs); (ii) **exact fallback** (outside $A_t$, the residual is algebraically zero); (iii) **proposal binding** (stale or forged exams are rejected); (iv) **atomic promotion**; and (v) **one-step rollback**.
 
-```bash
-python -m pip install -e ".[benchmark,test]"
-python -m experiments.phase3_prepare_data \
-  --source data/CMAPSSData \
-  --source-origin user-attested-original-extraction
-python -m experiments.phase3_preconditions
-python -m experiments.phase3_matrix
-python -m experiments.phase3_verdict
-python -m experiments.phase3_visualize
-```
+For full definitions, data-role constraints, and statistical boundaries, see [`docs/THEORY.md`](docs/THEORY.md).
 
-Do not continue past preconditions unless the verdict is `READY_FOR_MATRIX`. Detailed
-checks, Windows commands and provenance notes are in
-[docs/Phase3_Runbook.md](docs/Phase3_Runbook.md). The exact frozen files are identified
-by [results/phase3b_snapshot.sha256](results/phase3b_snapshot.sha256). The public
-release includes the frozen matrix and checkpoints named by that manifest; the
-prepared C-MAPSS array is excluded and must be regenerated from the source dataset.
+## Where the mechanism may be useful
 
-## API and current scope
+Validated tasks so far include the C-MAPSS FD002 industrial simulation study.
+The [benchmark plan](docs/BENCHMARK_PLAN.md) covers broader domains and model
+families.
 
-```text
-VRSEModel.wrap(...)    create a private frozen baseline and empty shadow service
-model.fit(...)         establish features, fit-time GP and ID uncertainty threshold
-model.observe(...)     update only the isolated shadow posterior
-model.evaluate(...)    create an auditable, single-use promotion proposal
-model.promote(...)     atomically authorize the tested regional snapshot
-model.revoke()         restore one previous deployment snapshot
-model(x)               route to the expert only where authorization holds
-model.route_mask(x)    expose routing decisions for audit
-```
+Promising future directions include industrial condition monitoring, sensor
+regression, network scheduling, and other domains that require safe,
+interpretable continual learning.
 
-Version `0.1.0a1` supports supervised scalar regression, one active regional residual
-expert, CPU execution, SNGP-style distance-aware features and either a 1-D observed
-span or a high-dimensional KNN feature region. It is a research prototype, not a
-drop-in safety layer for arbitrary models.
+## Experimental evidence
 
-## What this project does not claim
+The representative study uses **NASA C-MAPSS FD002**, an industrial simulation
+benchmark for turbofan remaining-useful-life prediction (3 operating settings,
+21 sensor values per observation). It is simulated data, not field data from
+operating aircraft.
 
-- It does not solve continual learning or catastrophic forgetting in general.
-- It does not guarantee that SNGP uncertainty detects every distribution shift.
-- It does not certify closed-loop, clinical, financial or other high-stakes safety.
-- It has not yet validated classification, delayed labels, adversarial streams,
-  multiple simultaneous experts or repeated region composition.
-- The Phase-3 result is a mechanism study, not a C-MAPSS leaderboard claim.
+Entire engines were assigned to disjoint fit, calibration, observation,
+validation, guard, and post-decision roles. Five fixed seeds were evaluated
+under two paired conditions:
 
-The negative and invalid intermediate experiments are retained because they explain
-why the final design looks the way it does. The concise
-[research scope](docs/RESEARCH_SCOPE.md) separates the frozen evidence from open
-questions; the public release keeps the evidence needed to audit the final claims.
+- **stable:** the new operating regime remains learnable;
+- **reversed:** validation labels are inverted to create a candidate that
+  should not be promoted.
 
-## Project status and citation
+| Question | Result |
+|---|---:|
+| Utility: stable new-regime RMSE, baseline → VRSE | 96.18 → **21.61** |
+| Utility: mean RMSE reduction | **77.5%** |
+| Promotion: useful candidates accepted | **5/5** |
+| Rejection: reversed candidates falsely accepted | **0/5** |
+| Coverage: new-regime inputs routed to expert | **93.0–96.0%** |
+| Non-interference: ID / adjacent-unknown expert routing | **0.0% / 0.0%** |
 
-The core lifecycle and the Phase-3B case study are frozen. Version `0.1.0a1` is the
-first public research software release corresponding to that result. It is a research
-preview: the API is not promised stable, and the package is not production ready.
-The immutable version archive is available from
-[Zenodo](https://doi.org/10.5281/zenodo.21653095). See
-[CHANGELOG.md](CHANGELOG.md), [CITATION.cff](CITATION.cff) and the
-[release checklist](docs/RELEASE_CHECKLIST.md).
+### Utility and rejection
 
-Published by **Byte-Naut**, an independent open-source research identity.
+![Stable condition improves after promotion; reversed condition is rejected](results/cmapss_fd002_stream_behavior.png)
 
-> Byte-Naut. (2026). *VRSE-PyTorch v0.1.0a1: Validated Regional Support Expansion
-> for Safe Online Adaptation* [Computer software]. Zenodo.
-> https://doi.org/10.5281/zenodo.21653095
+The stable stream recovers most of the utility of globally serving the shadow
+expert. Under label reversal, the ungated learner serves a harmful update while
+VRSE rejects the candidate. Label reversal also changes the baseline
+denominator, so this is a controlled rejection test — not proof that candidate
+degradation alone caused rejection.
 
-VRSE is released under the [Apache License 2.0](LICENSE). The project name and
-package identify this research implementation; they do not imply a safety
-certification or endorsement by NASA or any other organization.
+### Non-interference and non-vacuous coverage
+
+![Frozen feature-space projection with the authorized C-MAPSS region](results/cmapss_fd002_embedding.png)
+
+The authorization mask covers most of the demonstrated new condition while
+leaving the protected old condition and an adjacent unknown condition on
+fallback — ruling out the trivial case where non-interference comes from
+rejecting every input.
+
+### Safety–plasticity trade-off
+
+![Utility versus interference for frozen, online, reject-all, global-shadow, and VRSE methods](results/cmapss_fd002_safety_plasticity.png)
+
+Global adaptation is useful but interferes everywhere; static rejection avoids
+interference but never adapts; VRSE occupies the useful, low-interference corner
+in this experiment.
+
+Audit the frozen evidence:
+[`snapshot`](results/CMAPSS_FD002_SNAPSHOT.md) ·
+[`mechanical verdict`](results/CMAPSS_FD002_RESULT.md) ·
+[`per-seed metrics`](results/cmapss_fd002_metrics.md) ·
+[`raw matrix`](results/cmapss_fd002_matrix.json) ·
+[`protocol`](docs/CMAPSS_FD002_PROTOCOL.md)
+
+## How to contribute
+
+- **Reproduce:** run the quickstart and frozen experiment on a different OS or
+  hardware profile.
+- **Challenge:** submit a minimal counterexample that breaks the current
+  authorization rule.
+- **Extend:** add classification, a realistic online simulation, repeated
+  promotion, multiple experts, or a new model adapter.
+- **Compare:** benchmark VRSE against global fine-tuning, replay,
+  regularization, reject-all, and established CL toolkits on the same stream.
+
+Work packages are in [`ROADMAP.md`](ROADMAP.md); contribution guidelines in
+[`CONTRIBUTING.md`](CONTRIBUTING.md); reproduction instructions in
+[`docs/REPRODUCTION.md`](docs/REPRODUCTION.md).
+
+VRSE is released under the [Apache License 2.0](LICENSE). The project name does
+not imply safety certification or endorsement by NASA or any other organization.

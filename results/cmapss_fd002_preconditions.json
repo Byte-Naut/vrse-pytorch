@@ -1,0 +1,519 @@
+{
+  "aggregate": {
+    "p0_pass": true,
+    "p1_pass": true,
+    "p2_pass": true,
+    "p3_pass": true
+  },
+  "debug_skipped_phase2_gates": false,
+  "normalization_audit": {
+    "all_finite": true,
+    "floor_feature_indices": [],
+    "floor_features_with_outside_variation": [],
+    "max_abs_z_all_rows": 2.567038868639311,
+    "passed": true,
+    "source": "unlabeled regime_discovery units 1-20, all regimes",
+    "std_floor": 1e-06
+  },
+  "phase2_gates": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "tests",
+        "-q"
+      ],
+      "passed": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "31 passed in 14.56s\n"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "experiments.exp_stage4c_vrse_regression"
+      ],
+      "passed": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Stable seeds promoted (vrse):   10/10\nUnstable seeds promoted (vrse):  0/5\nMismatches vs original Stage-4C matrix: 0\n{'stream': 'stable_shift', 'seed': 0, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}\n{'stream': 'stable_shift', 'seed': 1, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}\n{'stream': 'stable_shift', 'seed': 2, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}\n{'stream': 'stable_shift', 'seed': 3, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}\n{'stream': 'stable_shift', 'seed': 4, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}\n{'stream': 'stable_extrapolation', 'seed': 0, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}\n{'stream': 'stable_extrapolation', 'seed': 1, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}\n{'stream': 'stable_extrapolation', 'seed': 2, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}\n{'stream': 'stable_extrapolation', 'seed': 3, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}\n{'stream': 'stable_extrapolation', 'seed': 4, 'vrse_passed': True, 'orig_promoted': True, 'expected_stable': True}\n{'stream': 'unstable_extrapolation', 'seed': 0, 'vrse_passed': False, 'orig_promoted': False, 'expected_stable': False}\n{'stream': 'unstable_extrapolation', 'seed': 1, 'vrse_passed': False, 'orig_promoted': False, 'expected_stable': False}\n{'stream': 'unstable_extrapolation', 'seed': 2, 'vrse_passed': False, 'orig_promoted': False, 'expected_stable': False}\n{'stream': 'unstable_extrapolation', 'seed': 3, 'vrse_passed': False, 'orig_promoted': False, 'expected_stable': False}\n{'stream': 'unstable_extrapolation', 'seed': 4, 'vrse_passed': False, 'orig_promoted': False, 'expected_stable': False}\n\nREGRESSION PASSED\n"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "experiments.exp_stage4c_vrse_gp_equivalence"
+      ],
+      "passed": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "[predict, pre-update] max|mu diff| = 0.000e+00, max|u diff| = 0.000e+00\n[update_incremental x128] max|Lambda diff| = 0.000e+00, max|q diff| = 0.000e+00\n[predict, post-update] max|mu diff| = 0.000e+00, max|u diff| = 0.000e+00\n\nGP EQUIVALENCE PASSED\n"
+    }
+  ],
+  "protocol_revision": "phase3b-discovery-global-normalization-v1",
+  "seeds": [
+    {
+      "build": {
+        "config": {
+          "hidden_dim": 32,
+          "knn_k": 5,
+          "length_scale_max_points": 2048,
+          "max_support_prototypes": 512,
+          "min_shadow_updates": 30,
+          "n_blocks": 2,
+          "noise_std": 2.3017095565795898,
+          "phi_epochs": 100,
+          "phi_lr": 0.001,
+          "preset": "regional_regression_highdim",
+          "prior_std": 1.0,
+          "promotion_q95_ratio": 1.0,
+          "promotion_rmse_ratio": 0.8,
+          "random_seed": 4300,
+          "rff_dim": 128,
+          "sn_multiplier": 0.95,
+          "spectral_input": true,
+          "support_kind": "knn_feature",
+          "tau_confidence": 0.95,
+          "tau_percentile": 95.0,
+          "version": "0.1.0-phase3"
+        },
+        "fit_seconds": 0.7686660999988817,
+        "noise_std": 2.3017095565795898,
+        "seed": 4300,
+        "spectral_norms": {
+          "blocks.0.0": 0.949999988079071,
+          "blocks.1.0": 0.9499999284744263,
+          "encoder": 0.9499998688697815
+        }
+      },
+      "data_integrity": {
+        "all_finite": true,
+        "features_24d_scalar_target": true,
+        "normalization_audit": {
+          "all_finite": true,
+          "floor_feature_indices": [],
+          "floor_features_with_outside_variation": [],
+          "max_abs_z_all_rows": 2.567038868639311,
+          "passed": true,
+          "source": "unlabeled regime_discovery units 1-20, all regimes",
+          "std_floor": 1e-06
+        },
+        "normalization_source": "unlabeled regime_discovery units 1-20, all regimes",
+        "passed": true,
+        "protocol_revision": "phase3b-discovery-global-normalization-v1",
+        "role_units": 240,
+        "roles_disjoint": true
+      },
+      "gp_equivalence": {
+        "lambda_max_diff": 1.9984014443252818e-15,
+        "passed": true,
+        "q_max_diff": 3.197442310920451e-14,
+        "samples": 128
+      },
+      "p1_baseline_vs_constant_ratio": 0.5641061570637645,
+      "p1_pass": true,
+      "p2_initial_rejection": 1.0,
+      "p2_pass": true,
+      "p3_cond1": true,
+      "p3_cond2": true,
+      "p3_pass": true,
+      "seed": 4300,
+      "spectral_norms": {
+        "blocks.0.0": 0.949999988079071,
+        "blocks.1.0": 0.9499999284744263,
+        "encoder": 0.9499998688697815
+      },
+      "spectral_pass": true,
+      "validation": {
+        "cond1_rmse": true,
+        "cond2_q95": true,
+        "cond3_region": true,
+        "cond4_id_invariant": true,
+        "cond_min_shadow_updates": true,
+        "id_max_diff": 0.0,
+        "id_overlap_frac": 0.0,
+        "id_route_change_frac": 0.0,
+        "passed": true,
+        "q95_deploy": 125.21235656738281,
+        "q95_shadow": 42.06587219238281,
+        "region_prototypes": 512,
+        "region_radius": 0.07662127166986465,
+        "region_tau": 0.1402125060558319,
+        "rmse_deploy": 96.34188842773438,
+        "rmse_shadow": 19.974966049194336,
+        "support_kind": "knn_feature"
+      }
+    },
+    {
+      "build": {
+        "config": {
+          "hidden_dim": 32,
+          "knn_k": 5,
+          "length_scale_max_points": 2048,
+          "max_support_prototypes": 512,
+          "min_shadow_updates": 30,
+          "n_blocks": 2,
+          "noise_std": 2.0778985977172852,
+          "phi_epochs": 100,
+          "phi_lr": 0.001,
+          "preset": "regional_regression_highdim",
+          "prior_std": 1.0,
+          "promotion_q95_ratio": 1.0,
+          "promotion_rmse_ratio": 0.8,
+          "random_seed": 4301,
+          "rff_dim": 128,
+          "sn_multiplier": 0.95,
+          "spectral_input": true,
+          "support_kind": "knn_feature",
+          "tau_confidence": 0.95,
+          "tau_percentile": 95.0,
+          "version": "0.1.0-phase3"
+        },
+        "fit_seconds": 0.7775583000002371,
+        "noise_std": 2.0778985977172852,
+        "seed": 4301,
+        "spectral_norms": {
+          "blocks.0.0": 0.9500000476837158,
+          "blocks.1.0": 0.9500001072883606,
+          "encoder": 0.9499998092651367
+        }
+      },
+      "data_integrity": {
+        "all_finite": true,
+        "features_24d_scalar_target": true,
+        "normalization_audit": {
+          "all_finite": true,
+          "floor_feature_indices": [],
+          "floor_features_with_outside_variation": [],
+          "max_abs_z_all_rows": 2.567038868639311,
+          "passed": true,
+          "source": "unlabeled regime_discovery units 1-20, all regimes",
+          "std_floor": 1e-06
+        },
+        "normalization_source": "unlabeled regime_discovery units 1-20, all regimes",
+        "passed": true,
+        "protocol_revision": "phase3b-discovery-global-normalization-v1",
+        "role_units": 240,
+        "roles_disjoint": true
+      },
+      "gp_equivalence": {
+        "lambda_max_diff": 1.9984014443252818e-15,
+        "passed": true,
+        "q_max_diff": 3.552713678800501e-14,
+        "samples": 128
+      },
+      "p1_baseline_vs_constant_ratio": 0.566224597550574,
+      "p1_pass": true,
+      "p2_initial_rejection": 1.0,
+      "p2_pass": true,
+      "p3_cond1": true,
+      "p3_cond2": true,
+      "p3_pass": true,
+      "seed": 4301,
+      "spectral_norms": {
+        "blocks.0.0": 0.9500000476837158,
+        "blocks.1.0": 0.9500001072883606,
+        "encoder": 0.9499998092651367
+      },
+      "spectral_pass": true,
+      "validation": {
+        "cond1_rmse": true,
+        "cond2_q95": true,
+        "cond3_region": true,
+        "cond4_id_invariant": true,
+        "cond_min_shadow_updates": true,
+        "id_max_diff": 0.0,
+        "id_overlap_frac": 0.0,
+        "id_route_change_frac": 0.0,
+        "passed": true,
+        "q95_deploy": 126.12380981445312,
+        "q95_shadow": 45.74686813354492,
+        "region_prototypes": 512,
+        "region_radius": 0.07649670541286469,
+        "region_tau": 0.11880088597536087,
+        "rmse_deploy": 95.63067626953125,
+        "rmse_shadow": 21.920583724975586,
+        "support_kind": "knn_feature"
+      }
+    },
+    {
+      "build": {
+        "config": {
+          "hidden_dim": 32,
+          "knn_k": 5,
+          "length_scale_max_points": 2048,
+          "max_support_prototypes": 512,
+          "min_shadow_updates": 30,
+          "n_blocks": 2,
+          "noise_std": 2.2477872848510745,
+          "phi_epochs": 100,
+          "phi_lr": 0.001,
+          "preset": "regional_regression_highdim",
+          "prior_std": 1.0,
+          "promotion_q95_ratio": 1.0,
+          "promotion_rmse_ratio": 0.8,
+          "random_seed": 4302,
+          "rff_dim": 128,
+          "sn_multiplier": 0.95,
+          "spectral_input": true,
+          "support_kind": "knn_feature",
+          "tau_confidence": 0.95,
+          "tau_percentile": 95.0,
+          "version": "0.1.0-phase3"
+        },
+        "fit_seconds": 0.9283752999999706,
+        "noise_std": 2.2477872848510745,
+        "seed": 4302,
+        "spectral_norms": {
+          "blocks.0.0": 0.9500000476837158,
+          "blocks.1.0": 0.9499997496604919,
+          "encoder": 0.9499998092651367
+        }
+      },
+      "data_integrity": {
+        "all_finite": true,
+        "features_24d_scalar_target": true,
+        "normalization_audit": {
+          "all_finite": true,
+          "floor_feature_indices": [],
+          "floor_features_with_outside_variation": [],
+          "max_abs_z_all_rows": 2.567038868639311,
+          "passed": true,
+          "source": "unlabeled regime_discovery units 1-20, all regimes",
+          "std_floor": 1e-06
+        },
+        "normalization_source": "unlabeled regime_discovery units 1-20, all regimes",
+        "passed": true,
+        "protocol_revision": "phase3b-discovery-global-normalization-v1",
+        "role_units": 240,
+        "roles_disjoint": true
+      },
+      "gp_equivalence": {
+        "lambda_max_diff": 2.220446049250313e-15,
+        "passed": true,
+        "q_max_diff": 3.197442310920451e-14,
+        "samples": 128
+      },
+      "p1_baseline_vs_constant_ratio": 0.5029236983036128,
+      "p1_pass": true,
+      "p2_initial_rejection": 1.0,
+      "p2_pass": true,
+      "p3_cond1": true,
+      "p3_cond2": true,
+      "p3_pass": true,
+      "seed": 4302,
+      "spectral_norms": {
+        "blocks.0.0": 0.9500000476837158,
+        "blocks.1.0": 0.9499997496604919,
+        "encoder": 0.9499998092651367
+      },
+      "spectral_pass": true,
+      "validation": {
+        "cond1_rmse": true,
+        "cond2_q95": true,
+        "cond3_region": true,
+        "cond4_id_invariant": true,
+        "cond_min_shadow_updates": true,
+        "id_max_diff": 0.0,
+        "id_overlap_frac": 0.0,
+        "id_route_change_frac": 0.0,
+        "passed": true,
+        "q95_deploy": 124.5241928100586,
+        "q95_shadow": 41.28749084472656,
+        "region_prototypes": 512,
+        "region_radius": 0.12461794912815094,
+        "region_tau": 0.14269386231899261,
+        "rmse_deploy": 97.1963119506836,
+        "rmse_shadow": 20.627361297607422,
+        "support_kind": "knn_feature"
+      }
+    },
+    {
+      "build": {
+        "config": {
+          "hidden_dim": 32,
+          "knn_k": 5,
+          "length_scale_max_points": 2048,
+          "max_support_prototypes": 512,
+          "min_shadow_updates": 30,
+          "n_blocks": 2,
+          "noise_std": 2.135334014892578,
+          "phi_epochs": 100,
+          "phi_lr": 0.001,
+          "preset": "regional_regression_highdim",
+          "prior_std": 1.0,
+          "promotion_q95_ratio": 1.0,
+          "promotion_rmse_ratio": 0.8,
+          "random_seed": 4303,
+          "rff_dim": 128,
+          "sn_multiplier": 0.95,
+          "spectral_input": true,
+          "support_kind": "knn_feature",
+          "tau_confidence": 0.95,
+          "tau_percentile": 95.0,
+          "version": "0.1.0-phase3"
+        },
+        "fit_seconds": 0.8717201999988902,
+        "noise_std": 2.135334014892578,
+        "seed": 4303,
+        "spectral_norms": {
+          "blocks.0.0": 0.9499999284744263,
+          "blocks.1.0": 0.9500000476837158,
+          "encoder": 0.9499998092651367
+        }
+      },
+      "data_integrity": {
+        "all_finite": true,
+        "features_24d_scalar_target": true,
+        "normalization_audit": {
+          "all_finite": true,
+          "floor_feature_indices": [],
+          "floor_features_with_outside_variation": [],
+          "max_abs_z_all_rows": 2.567038868639311,
+          "passed": true,
+          "source": "unlabeled regime_discovery units 1-20, all regimes",
+          "std_floor": 1e-06
+        },
+        "normalization_source": "unlabeled regime_discovery units 1-20, all regimes",
+        "passed": true,
+        "protocol_revision": "phase3b-discovery-global-normalization-v1",
+        "role_units": 240,
+        "roles_disjoint": true
+      },
+      "gp_equivalence": {
+        "lambda_max_diff": 2.4424906541753444e-15,
+        "passed": true,
+        "q_max_diff": 2.1316282072803006e-14,
+        "samples": 128
+      },
+      "p1_baseline_vs_constant_ratio": 0.49474103651092627,
+      "p1_pass": true,
+      "p2_initial_rejection": 1.0,
+      "p2_pass": true,
+      "p3_cond1": true,
+      "p3_cond2": true,
+      "p3_pass": true,
+      "seed": 4303,
+      "spectral_norms": {
+        "blocks.0.0": 0.9499999284744263,
+        "blocks.1.0": 0.9500000476837158,
+        "encoder": 0.9499998092651367
+      },
+      "spectral_pass": true,
+      "validation": {
+        "cond1_rmse": true,
+        "cond2_q95": true,
+        "cond3_region": true,
+        "cond4_id_invariant": true,
+        "cond_min_shadow_updates": true,
+        "id_max_diff": 0.0,
+        "id_overlap_frac": 0.0,
+        "id_route_change_frac": 0.0,
+        "passed": true,
+        "q95_deploy": 125.00440979003906,
+        "q95_shadow": 39.302215576171875,
+        "region_prototypes": 512,
+        "region_radius": 0.08615916222333908,
+        "region_tau": 0.07092038542032242,
+        "rmse_deploy": 97.42194366455078,
+        "rmse_shadow": 19.583127975463867,
+        "support_kind": "knn_feature"
+      }
+    },
+    {
+      "build": {
+        "config": {
+          "hidden_dim": 32,
+          "knn_k": 5,
+          "length_scale_max_points": 2048,
+          "max_support_prototypes": 512,
+          "min_shadow_updates": 30,
+          "n_blocks": 2,
+          "noise_std": 2.219983673095703,
+          "phi_epochs": 100,
+          "phi_lr": 0.001,
+          "preset": "regional_regression_highdim",
+          "prior_std": 1.0,
+          "promotion_q95_ratio": 1.0,
+          "promotion_rmse_ratio": 0.8,
+          "random_seed": 4304,
+          "rff_dim": 128,
+          "sn_multiplier": 0.95,
+          "spectral_input": true,
+          "support_kind": "knn_feature",
+          "tau_confidence": 0.95,
+          "tau_percentile": 95.0,
+          "version": "0.1.0-phase3"
+        },
+        "fit_seconds": 0.7894656000007672,
+        "noise_std": 2.219983673095703,
+        "seed": 4304,
+        "spectral_norms": {
+          "blocks.0.0": 0.9499998688697815,
+          "blocks.1.0": 0.949999988079071,
+          "encoder": 0.9500002264976501
+        }
+      },
+      "data_integrity": {
+        "all_finite": true,
+        "features_24d_scalar_target": true,
+        "normalization_audit": {
+          "all_finite": true,
+          "floor_feature_indices": [],
+          "floor_features_with_outside_variation": [],
+          "max_abs_z_all_rows": 2.567038868639311,
+          "passed": true,
+          "source": "unlabeled regime_discovery units 1-20, all regimes",
+          "std_floor": 1e-06
+        },
+        "normalization_source": "unlabeled regime_discovery units 1-20, all regimes",
+        "passed": true,
+        "protocol_revision": "phase3b-discovery-global-normalization-v1",
+        "role_units": 240,
+        "roles_disjoint": true
+      },
+      "gp_equivalence": {
+        "lambda_max_diff": 2.220446049250313e-15,
+        "passed": true,
+        "q_max_diff": 2.842170943040401e-14,
+        "samples": 128
+      },
+      "p1_baseline_vs_constant_ratio": 0.4962482749228467,
+      "p1_pass": true,
+      "p2_initial_rejection": 1.0,
+      "p2_pass": true,
+      "p3_cond1": true,
+      "p3_cond2": true,
+      "p3_pass": true,
+      "seed": 4304,
+      "spectral_norms": {
+        "blocks.0.0": 0.9499998688697815,
+        "blocks.1.0": 0.949999988079071,
+        "encoder": 0.9500002264976501
+      },
+      "spectral_pass": true,
+      "validation": {
+        "cond1_rmse": true,
+        "cond2_q95": true,
+        "cond3_region": true,
+        "cond4_id_invariant": true,
+        "cond_min_shadow_updates": true,
+        "id_max_diff": 0.0,
+        "id_overlap_frac": 0.0,
+        "id_route_change_frac": 0.0,
+        "passed": true,
+        "q95_deploy": 125.00003814697266,
+        "q95_shadow": 45.685665130615234,
+        "region_prototypes": 512,
+        "region_radius": 0.09158886224031448,
+        "region_tau": 0.159335196018219,
+        "rmse_deploy": 96.62508392333984,
+        "rmse_shadow": 21.892229080200195,
+        "support_kind": "knn_feature"
+      }
+    }
+  ],
+  "verdict": "READY_FOR_MATRIX"
+}

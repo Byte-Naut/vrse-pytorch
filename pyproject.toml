@@ -4,14 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vrse-pytorch"
-version = "0.1.0a1"
-description = "Validated regional support expansion for conservative online adaptation in PyTorch"
+version = "0.1.0a2"
+description = "Safer continual learning for PyTorch models — research-alpha reference implementation"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE"]
 authors = [
-  { name = "Byte-Naut" }
+  { name = "VRSE Project" }
 ]
 keywords = [
   "online-learning",
@@ -19,6 +19,7 @@ keywords = [
   "uncertainty",
   "selective-prediction",
   "pytorch",
+  "research-prototype",
 ]
 classifiers = [
   "Development Status :: 3 - Alpha",
@@ -46,7 +47,6 @@ test = [
 Homepage = "https://github.com/Byte-Naut/vrse-pytorch"
 Repository = "https://github.com/Byte-Naut/vrse-pytorch"
 Issues = "https://github.com/Byte-Naut/vrse-pytorch/issues"
-Archive = "https://doi.org/10.5281/zenodo.21653095"
 
 [tool.setuptools.packages.find]
 include = ["vrse*"]

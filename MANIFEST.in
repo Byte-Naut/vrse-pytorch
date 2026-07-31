@@ -4,9 +4,18 @@ include CITATION.cff
 include CHANGELOG.md
 include CONTRIBUTING.md
 include README.zh-CN.md
-recursive-include docs *.md *.svg
+include ROADMAP.md
+include requirements.txt
+recursive-include docs *.md *.svg *.png
+exclude docs/HN_LAUNCH.md
+exclude docs/RELEASE_VALIDATION.md
 recursive-include examples *.py
+recursive-include benchmarks *.py
 recursive-include experiments *.py
-recursive-include src *.py
+recursive-include notebooks *.ipynb
 recursive-include tests *.py
-recursive-include results *.md *.json *.txt *.sha256 *.png *.pkl *.pt
+include results/CMAPSS_FD002_*.md
+include results/cmapss_fd002_*.md
+include results/cmapss_fd002_*.json
+include results/cmapss_fd002_*.sha256
+include results/cmapss_fd002_*.png

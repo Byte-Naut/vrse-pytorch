@@ -35,7 +35,7 @@ class _PhiSN(nn.Module):
         elif spectral_input:
             self.encoder = _SNLinear(input_dim, hidden_dim, sn_multiplier)
         else:
-            # Preserve the frozen Phase-2B/Stage-4C 1-D path exactly.
+            # Preserve the frozen one-dimensional reference path exactly.
             self.encoder = nn.Linear(input_dim, hidden_dim)
         self.blocks = nn.ModuleList([
             nn.Sequential(_SNLinear(hidden_dim, hidden_dim, sn_multiplier), nn.ReLU())
@@ -193,11 +193,12 @@ def build_gp_head(cfg: VRSEConfig, z_train: torch.Tensor, r_train: torch.Tensor)
 # ---------------------------------------------------------------------------
 
 def _tolerance_limit_tau(u: torch.Tensor, p0: float = 0.95, confidence: float = 0.95) -> float:
-    """Wilks' one-sided distribution-free tolerance limit, matching
-    src/calibration.py:tolerance_limit_tau (see tests/test_public_contract.py
-    ::test_tau_matches_reference_impl for the differential check). Raises
-    when the calibration set is too small to support (p0, confidence)
-    instead of silently degrading to a weaker threshold."""
+    """Wilks' one-sided distribution-free tolerance limit.
+
+    Raises when the calibration set is too small to support ``(p0,
+    confidence)`` instead of silently degrading to a weaker threshold. The
+    boundary behavior is covered by deterministic order-statistic tests.
+    """
     from scipy.stats import binom
     n = u.numel()
     k = int(binom.ppf(confidence, n, p0)) + 1
@@ -220,8 +221,8 @@ class _DeploymentSnapshot:
     validated -- deploying anything else (e.g. the live shadow head, which
     keeps changing via observe()) would let an unvalidated candidate serve.
     Depth is 1 by design: only the most recently replaced snapshot is kept,
-    so revoke() is not a repeatable-rollback stack (Stage-4C never validated
-    multi-level rollback; a second consecutive revoke() must error)."""
+    so revoke() is not a repeatable-rollback stack; a second consecutive
+    revoke() must error."""
     deploy_head: "GPHead"
     authorized_region: Any
     tau: float
@@ -242,7 +243,7 @@ class AuthorizedRegion:
 
 @dataclass(frozen=True)
 class KNNFeatureRegion:
-    """Fixed high-dimensional support set used by Phase 3.
+    """Fixed high-dimensional support set used by the C-MAPSS benchmark.
 
     The region is a sublevel set of fifth-neighbour distance in the frozen
     PhiSN space, intersected with a frozen candidate-uncertainty sublevel
@@ -307,11 +308,11 @@ class _ShadowLearner:
 
 
 # ---------------------------------------------------------------------------
-# _SupportBuilder  (observed-span-first, from Stage-4C)
+# _SupportBuilder (observed-span-first reference)
 # ---------------------------------------------------------------------------
 
 _SCAN_POINTS = 1025
-_SCAN_DOMAIN = (-8.0, 7.0)   # matches src/config.py Stage4CConfig.scan_domain
+_SCAN_DOMAIN = (-8.0, 7.0)   # frozen one-dimensional reference domain
 _MIN_SPAN_WIDTH = 1e-6
 _EXACT_FIDELITY_TOL = 1e-6
 
@@ -344,7 +345,7 @@ def build_observed_span_region(
     hi = float(observed.max().item())
     if hi - lo < _MIN_SPAN_WIDTH:
         return None
-    # Restore Stage-4C defensive checks dropped in the original port.
+    # Retain the frozen reference implementation's defensive checks.
     if lo <= float(scan_domain[0]) or hi >= float(scan_domain[1]):
         return None  # observed_span_touches_scan_boundary
     if protected_id_ranges and _intervals_overlap(lo, hi, protected_id_ranges):
@@ -389,7 +390,7 @@ def build_knn_feature_region(
     x_promotion_val: torch.Tensor,
     cfg: VRSEConfig,
 ) -> Optional[KNNFeatureRegion]:
-    """Build the fixed Phase-3 high-dimensional authorization support."""
+    """Build the fixed high-dimensional authorization support."""
     if x_shadow_train.ndim != 2 or x_promotion_val.ndim != 2:
         return None
     if x_shadow_train.shape[1] != x_promotion_val.shape[1]:
@@ -510,7 +511,7 @@ def validate_promotion(
             # After promotion: inside region shadow ungated, outside deploy-gated (vrse
             # routing is more conservative than RegionalExpertService -- region-outside
             # falls back to pure baseline, not deploy-gated; but for the ID invariant
-            # check we replicate the original Stage-4C cond4 semantics exactly).
+            # check retained for reference-semantics equivalence).
             a_after = torch.where(in_region, torch.ones_like(a_d), a_d)
             mu_after = torch.where(in_region, mu_s, mu_d)
             y_after = b_guard.squeeze(-1) + a_after * mu_after
@@ -521,7 +522,7 @@ def validate_promotion(
         id_max_diff = float((y_after - y_before).abs().max().item())
         id_overlap_frac = in_region.float().mean().item()
         id_route_change_frac = (route_after != route_before).float().mean().item()
-        # Restore full four-term cond4 (Stage-4C src/stage4c.py:143-148):
+        # Retain the full four-term protected-region condition:
         # protected_range_overlap is handled upstream in build_observed_span_region,
         # so here we only need the three guard-sample based checks.
         cond4 = (
@@ -558,7 +559,7 @@ def validate_highdim_promotion(
     baseline: nn.Module,
     cfg: VRSEConfig,
 ) -> Tuple[dict, Optional[KNNFeatureRegion]]:
-    """Phase-3 validator.
+    """High-dimensional promotion validator.
 
     Before authorization the actual VRSE service is the frozen baseline.
     Candidate competence is therefore assessed directly against that service;

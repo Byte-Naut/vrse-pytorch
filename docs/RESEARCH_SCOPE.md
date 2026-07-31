@@ -1,71 +1,88 @@
 # VRSE research scope
 
-## The question
+## Research question
 
-VRSE asks a narrow systems question:
+VRSE asks whether continual adaptation can be expressed as a deployment lifecycle:
 
-> Can an online service learn a useful new regional behavior without allowing that
-> learning process to modify the protected service elsewhere?
+> Keep the known service immutable, learn a candidate in isolation, review it on
+> independent evidence, and grant it reversible permission only for supported inputs.
 
-The proposed answer is a lifecycle rather than a new uncertainty score: freeze the
-old service, train a candidate in isolation, test it on independent evidence, bind a
-passing snapshot to a supported input region, and use exact fallback outside that
-region.
+The proposed contribution is the service semantics around adaptation—not a claim to
+have invented distance-aware uncertainty, local experts, reject options or shadow
+models individually.
 
-## What is supported today
+## Claim map
 
-The implementation gives a direct routing invariant. If an input is not inside the
-authorized region, the deployed output is the frozen baseline output exactly. Shadow
-updates cannot alter the served snapshot, and promotion binds the evaluated candidate
-and region atomically.
+| Claim type | Current status | Basis |
+|---|---|---|
+| `observe()` cannot change served output | implementation invariant | separate live-shadow and frozen-deployment objects |
+| Outside the authorized region, output equals the baseline | implementation invariant | residual is set to literal zero |
+| `review_mask()` selects baseline-unfamiliar inputs outside current coverage | implementation invariant | frozen fit-time uncertainty threshold intersected with the inverse route mask |
+| Proposal is tied to evaluated candidate/configuration/region | implementation invariant | fingerprints, immutable snapshot and single-use token |
+| Promotion installs candidate and region together | implementation invariant | atomic snapshot replacement |
+| One previous snapshot can be restored | implementation invariant | bounded restore point |
+| Useful regional adaptation can occur without reject-all | initial empirical support | deterministic example and five-seed C-MAPSS study |
+| Harmful candidate can be rejected | initial empirical support | deterministic harmful update and paired reversed-label control |
+| Tested old and adjacent unknown regions retain fallback | initial empirical support | zero expert routing in the frozen C-MAPSS matrix |
+| Works across domains, tasks and model families | open | planned benchmark and adapter work |
+| Authorized-region risk is statistically bounded | open | no current finite-sample promotion theorem |
+| Safe for production or high-stakes control | not claimed | no operational validation or certification |
 
-Two experiment families support the implementation:
+## Current evidence
 
-- The one-dimensional Stage-4C reference isolates boundary and lifecycle behavior.
-- The frozen Phase-3B study extends the mechanism to a real 24-dimensional industrial
-  simulation benchmark. Across five seeds, stable candidates promote 5/5 times,
-  reversed candidates promote 0/5 times, new-regime RMSE falls from 96.18 to 21.61 on
-  average, and ID/adjacent-unknown routing remains exactly zero.
+### Deterministic lifecycle example
 
-This is evidence that regional permission can create a useful safety–plasticity
-trade-off in the tested setting. It is stronger than a toy demonstration, but still a
-single-task, single-promotion result.
+The source-only quickstart exercises isolation, useful promotion, a harmful rejected
+candidate, exact old/unknown fallback and one-step rollback. It is a mechanism check,
+not a performance benchmark.
 
-## What remains open
+### C-MAPSS FD002 case study
 
-Current evidence does not establish:
+The frozen study uses a 24-dimensional industrial simulation benchmark, disjoint
+engine-level data roles, five fixed seeds and paired stable/reversed conditions.
 
-- a distribution-free bound on the risk of an authorized expert;
-- reliable support regions in arbitrary learned representations;
-- composition, conflict resolution or rollback across multiple experts and rounds;
-- robustness to poisoned labels, adversarial inputs or strategic users;
-- classification, structured prediction, delayed labels or closed-loop control safety;
-- production reliability or state-of-the-art task performance.
+- stable candidates promoted: 5/5;
+- reversed candidates promoted: 0/5;
+- mean stable new-condition RMSE: 96.18 baseline, 21.61 VRSE;
+- supported new-condition expert routing: 93.0–96.0%;
+- protected old / adjacent-unknown expert routing: 0.0% / 0.0%.
 
-Finite evidence also creates an unavoidable coverage boundary: opening beyond observed
-support may include a neighboring unknown regime, while refusing to do so may leave a
-stable tail uncovered. VRSE chooses explicit, inspectable permission over pretending
-that this ambiguity has disappeared.
+This supports the mechanism in one representative high-dimensional setting. It is not
+a C-MAPSS leaderboard claim and does not establish real-aircraft performance.
 
-## Academic position
+## Prospective relevance, not validation
 
-The individual ingredients—distance-aware uncertainty, reject options, shadow models,
-local experts and runtime fallback—are established ideas. VRSE's proposed contribution
-is their deployment semantics:
+The mechanism may be relevant to industrial monitoring, sensor regression, edge
+feedback loops and other systems where global online fine-tuning is too aggressive.
+Those settings remain hypotheses until evaluated with domain-appropriate streams,
+baselines and failure criteria.
 
-> online adaptation as validated, regional and reversible permission, with exact
-> non-interference outside the permitted region.
+The next evidence priority is therefore application breadth: multidimensional data
+from different domains, realistic online-learning simulation, multiple drift types
+and adapters for different baseline/advanced model families. See
+[`BENCHMARK_PLAN.md`](BENCHMARK_PLAN.md).
 
-That places the project between selective prediction, continual/open-world learning,
-mixtures of experts and runtime assurance. The durable research questions are how to
-attach finite-sample risk guarantees to promotion and how to compose multiple regional
-permissions without losing the fallback invariant.
+## Explicit non-claims
 
-## Evidence map
+The current release does not claim:
 
-- [Frozen Phase-3B snapshot](../results/PHASE3B_SNAPSHOT.md)
-- [Phase-3 protocol](Phase3_Plan.md)
-- [Phase-3B amendment](Phase3B_Amendment.md)
-- [Mechanical result](../results/PHASE3_RESULT.md)
+- a general solution to continual learning or catastrophic forgetting;
+- classification, structured prediction or delayed-label support;
+- correctness of KNN feature support in arbitrary representations;
+- repeated-promotion or overlapping-region semantics;
+- adversarial, poisoned-label or strategic-user robustness;
+- production reliability, closed-loop safety or regulatory certification;
+- universal out-of-distribution detection; or
+- state-of-the-art task accuracy.
 
-The scope above and the frozen snapshot are authoritative for the public release.
+## Authoritative evidence
+
+- [Frozen snapshot](../results/CMAPSS_FD002_SNAPSHOT.md)
+- [Mechanical result](../results/CMAPSS_FD002_RESULT.md)
+- [Per-seed metrics](../results/cmapss_fd002_metrics.md)
+- [Raw matrix](../results/cmapss_fd002_matrix.json)
+- [Frozen protocol](CMAPSS_FD002_PROTOCOL.md)
+- [Formal definitions and invariants](THEORY.md)
+
+When prose elsewhere conflicts with this page or the frozen artifacts, use the
+narrower interpretation.
