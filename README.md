@@ -110,7 +110,7 @@ The served function is mathematically guaranteed to be:
 $$
 F_t(x) =
 \begin{cases}
-f_0(x) + e_t(x), & x \in A_t, \\[4pt]
+f_0(x) + e_t(x), & x \in A_t, \\
 f_0(x), & x \notin A_t.
 \end{cases}
 $$
@@ -126,7 +126,7 @@ $$
 2. **Promotion Pipeline:** Once labels arrive, the outer MLOps system drives the state machine:
 
 $$
-D_{\mathrm{obs}} \xrightarrow{\mathrm{observe}} e^\star \xrightarrow[D_{\mathrm{val}}, D_{\mathrm{guard}}]{\mathrm{evaluate}} P^\star \xrightarrow{\mathrm{promote}\;\text{if}\;P^\star.\mathrm{passed}} (e_t, A_t)
+D_{\mathrm{obs}} \quad \overset{\mathrm{observe}}{\longrightarrow} \quad e^\star \quad \underset{D_{\mathrm{val}}, D_{\mathrm{guard}}}{\overset{\mathrm{evaluate}}{\longrightarrow}} \quad P^\star \quad \overset{\substack{\mathrm{promote}\\\text{if }P^\star.\mathrm{passed}}}{\longrightarrow} \quad (e_t, A_t)
 $$
 
 `observe()` mutates only the shadow without touching the live service. `evaluate()` tests the candidate's utility on held-out new data ($D_{\mathrm{val}}$) and checks whether the proposed region routes the supplied guard inputs ($D_{\mathrm{guard}}$) to the expert or changes their outputs. `promote()` atomically installs a passing snapshot.
@@ -134,16 +134,6 @@ $$
 **Five System Invariants.** The implementation structurally enforces: (i) **shadow non-interference** (learning never alters served outputs); (ii) **exact fallback** (outside $A_t$, the residual is algebraically zero); (iii) **proposal binding** (stale or forged exams are rejected); (iv) **atomic promotion**; and (v) **one-step rollback**.
 
 For full definitions, data-role constraints, and statistical boundaries, see [`docs/THEORY.md`](docs/THEORY.md).
-
-## Where the mechanism may be useful
-
-Validated tasks so far include the C-MAPSS FD002 industrial simulation study.
-The [benchmark plan](docs/BENCHMARK_PLAN.md) covers broader domains and model
-families.
-
-Promising future directions include industrial condition monitoring, sensor
-regression, network scheduling, and other domains that require safe,
-interpretable continual learning.
 
 ## Experimental evidence
 
@@ -202,6 +192,16 @@ Audit the frozen evidence:
 [`per-seed metrics`](results/cmapss_fd002_metrics.md) ·
 [`raw matrix`](results/cmapss_fd002_matrix.json) ·
 [`protocol`](docs/CMAPSS_FD002_PROTOCOL.md)
+
+## Where the mechanism may be useful
+
+Validated tasks so far include the C-MAPSS FD002 industrial simulation study.
+The [benchmark plan](docs/BENCHMARK_PLAN.md) covers broader domains and model
+families.
+
+Promising future directions include industrial condition monitoring, sensor
+regression, network scheduling, and other domains that require safe,
+interpretable continual learning.
 
 ## How to contribute
 

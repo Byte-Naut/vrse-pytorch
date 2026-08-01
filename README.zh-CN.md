@@ -76,7 +76,7 @@ Revoke restored previous snapshot    yes
 $$
 F_t(x) =
 \begin{cases}
-f_0(x) + e_t(x), & x \in A_t, \\[4pt]
+f_0(x) + e_t(x), & x \in A_t, \\
 f_0(x), & x \notin A_t.
 \end{cases}
 $$
@@ -92,7 +92,7 @@ $$
 2. **晋升管线：** 标签到达后，由外部 MLOps 系统驱动状态机流转：
 
 $$
-D_{\mathrm{obs}} \xrightarrow{\mathrm{observe}} e^\star \xrightarrow[D_{\mathrm{val}}, D_{\mathrm{guard}}]{\mathrm{evaluate}} P^\star \xrightarrow{\mathrm{promote}\;\text{if}\;P^\star.\mathrm{passed}} (e_t, A_t)
+D_{\mathrm{obs}} \quad \overset{\mathrm{observe}}{\longrightarrow} \quad e^\star \quad \underset{D_{\mathrm{val}}, D_{\mathrm{guard}}}{\overset{\mathrm{evaluate}}{\longrightarrow}} \quad P^\star \quad \overset{\substack{\mathrm{promote}\\\text{if }P^\star.\mathrm{passed}}}{\longrightarrow} \quad (e_t, A_t)
 $$
 
 `observe()` 仅更新影子专家，不触碰在线服务。`evaluate()` 利用留出的新工况数据（$D_{\mathrm{val}}$）考核候选专家的效用，并检查建议区域是否会让给定的旧数据护栏（$D_{\mathrm{guard}}$）进入专家路由、或改变这些输入的输出。`promote()` 仅将通过考核的快照原子化上线。
@@ -116,13 +116,6 @@ $$
 
 可执行的图形化说明见
 [`notebooks/vrse_lifecycle.ipynb`](notebooks/vrse_lifecycle.ipynb)。
-
-## 可能的应用方向
-
-当前完成验证的任务包括 C-MAPSS FD002 工业仿真实验。跨领域和不同模型的计划见
-[`docs/BENCHMARK_PLAN.md`](docs/BENCHMARK_PLAN.md)。
-
-未来有潜力的应用方向包括：工业状态监测、传感器回归、网络调度等需要安全、可解释的持续学习能力的领域。
 
 ## 实验证据
 
@@ -156,6 +149,13 @@ observation、validation、guard 和 post-decision 角色。
 [`逐 seed 指标`](results/cmapss_fd002_metrics.md) ·
 [`原始矩阵`](results/cmapss_fd002_matrix.json) ·
 [`实验协议`](docs/CMAPSS_FD002_PROTOCOL.md)
+
+## 可能的应用方向
+
+当前完成验证的任务包括 C-MAPSS FD002 工业仿真实验。跨领域和不同模型的计划见
+[`docs/BENCHMARK_PLAN.md`](docs/BENCHMARK_PLAN.md)。
+
+未来有潜力的应用方向包括：工业状态监测、传感器回归、网络调度等需要安全、可解释的持续学习能力的领域。
 
 ## 如何参与
 
